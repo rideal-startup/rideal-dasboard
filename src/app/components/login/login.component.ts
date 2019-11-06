@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  public email: string;
+  public password: string;
 
   constructor(
     private authService: AuthService,
@@ -18,7 +20,8 @@ export class LoginComponent implements OnInit {
 
   redirectToDashboard() {
     // TODO: Authenticate
-    this.router.navigateByUrl('/admin/dashboard');
+    console.log(this.email, this.password);
+    // this.router.navigateByUrl('/admin/dashboard');
   }
 
 }

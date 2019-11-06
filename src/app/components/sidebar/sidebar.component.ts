@@ -35,6 +35,12 @@ export const ROUTES: RouteInfo[] = [
     title: 'Table List',
     icon: 'icon-puzzle-10',
     class: ''
+  },
+  {
+    path: '/admin/challenges',
+    title: 'Table List',
+    icon: 'icon-puzzle-10',
+    class: ''
   }
 ];
 
