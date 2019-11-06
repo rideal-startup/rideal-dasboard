@@ -1,3 +1,4 @@
+import { ChallengesComponent } from './../../pages/challenges/challenges.component';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -29,6 +30,7 @@ import { FleetManagmentComponent } from 'src/app/pages/fleet-managment/fleet-man
     NotificationsComponent,
     MapComponent,
     FleetManagmentComponent,
+    ChallengesComponent
   ]
 })
 export class AdminLayoutModule {}

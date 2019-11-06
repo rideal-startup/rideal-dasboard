@@ -30,7 +30,7 @@ import { ChallengesComponent } from './pages/challenges/challenges.component';
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, ChallengesComponent],
+  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

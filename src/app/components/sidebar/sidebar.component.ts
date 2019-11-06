@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 declare interface RouteInfo {
   path: string;
@@ -8,37 +8,38 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
-    path: "/dashboard",
-    title: "Dashboard",
-    icon: "tim-icons icon-chart-pie-36",
-    class: ""
+    path: '/admin/dashboard',
+    title: 'Dashboard',
+    icon: 'tim-icons icon-chart-pie-36',
+    class: ''
   },
   {
-    path: "/maps",
-    title: "Maps",
-    icon: "tim-icons icon-pin",
-    class: "" },
-  {
-    path: "/notifications",
-    title: "Notifications",
-    icon: "tim-icons icon-bell-55",
-    class: ""
+    path: '/admin/maps',
+    title: 'Maps',
+    icon: 'tim-icons icon-pin',
+    class: ''
   },
   {
-    path: "/user",
-    title: "User Profile",
-    icon: "tim-icons icon-single-02",
-    class: ""
+    path: '/admin/notifications',
+    title: 'Notifications',
+    icon: 'tim-icons icon-bell-55',
+    class: ''
+  },
+  {
+    path: '/admin/user',
+    title: 'User Profile',
+    icon: 'tim-icons icon-single-02',
+    class: ''
   },
   {
     path: '/admin/tables',
     title: 'Table List',
-    icon: 'icon-puzzle-10',
+    icon: 'tim-icons icon-puzzle-10',
     class: ''
   },
   {
     path: '/admin/challenges',
-    title: 'Table List',
+    title: 'Challenges',
     icon: 'fas fa-award',
     class: ''
   },
@@ -51,9 +52,9 @@ export const ROUTES: RouteInfo[] = [
 ];
 
 @Component({
-  selector: "app-sidebar",
-  templateUrl: "./sidebar.component.html",
-  styleUrls: ["./sidebar.component.css"]
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];
