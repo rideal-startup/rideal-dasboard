@@ -1,4 +1,3 @@
-import { LoginComponent } from './components/login/login.component';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
@@ -9,14 +8,33 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 
 const routes: Routes = [
   {
-    path: 'admin',
-    component: AdminLayoutComponent,
-    loadChildren:
-      './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+    path: "",
+    redirectTo: "dashboard",
+    pathMatch: "full"
   },
   {
+    path: "",
+    component: AdminLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadChildren:
+          "./layouts/admin-layout/admin-layout.module#AdminLayoutModule"
+      }
+    ]
+  }, {
     path: '',
-    component: LoginComponent
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: '',
+        loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
+      }
+    ]
+  },
+  {
+    path: "**",
+    redirectTo: "dashboard"
   }
 ];
 

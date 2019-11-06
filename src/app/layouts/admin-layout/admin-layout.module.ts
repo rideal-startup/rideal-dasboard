@@ -12,6 +12,7 @@ import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FleetManagmentComponent } from 'src/app/pages/fleet-managment/fleet-managment.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     TablesComponent,
     NotificationsComponent,
     MapComponent,
+    FleetManagmentComponent,
   ]
 })
 export class AdminLayoutModule {}

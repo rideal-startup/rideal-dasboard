@@ -1,7 +1,7 @@
 {
   "name": "black-dashboard-angular",
   "version": "1.0.0",
-  "description": "Black Dasboard Angular, a Rideal Desgin. Coded by Rideal",
+  "description": "Black Dasboard Angular, a Creative Tim Desgin. Coded by Creative Tim",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -34,7 +34,7 @@
     "angular dashboard freebie",
     "angular admin freebie",
     "angular freebie admin panel",
-    "Rideal",
+    "creative tim",
     "web dashboard",
     "bootstrap 4 dashboard",
     "bootstrap 4",
@@ -47,7 +47,7 @@
     " free admin dashboard",
     "free bootstrap 4 admin dashboard"
   ],
-  "author": "Rideal <hello@creative-tim.com> (https://www.creative-tim.com/)",
+  "author": "Creative Tim <hello@creative-tim.com> (https://www.creative-tim.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/creativetimofficial/black-dashboard-angular/issues"
