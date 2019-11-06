@@ -7,9 +7,9 @@ import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 
 export const AdminLayoutRoutes: Routes = [
-  { path: "dashboard", component: DashboardComponent },
-  { path: "maps", component: MapComponent },
-  { path: "notifications", component: NotificationsComponent },
-  { path: "user", component: UserComponent },
-  { path: "tables", component: TablesComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'maps', component: MapComponent },
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'tables', component: TablesComponent },
 ];
