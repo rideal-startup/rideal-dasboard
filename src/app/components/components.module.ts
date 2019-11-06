@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -9,8 +10,22 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NgbModule],
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, LoginComponent],
-  exports: [FooterComponent, NavbarComponent, SidebarComponent]
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgbModule,
+    FormsModule
+  ],
+  declarations: [
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent,
+    LoginComponent
+  ],
+  exports: [
+    FooterComponent,
+    NavbarComponent,
+    SidebarComponent
+  ]
 })
 export class ComponentsModule {}

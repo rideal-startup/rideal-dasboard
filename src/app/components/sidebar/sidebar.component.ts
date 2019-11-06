@@ -10,30 +10,43 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/admin/dashboard',
     title: 'Dashboard',
-    icon: 'icon-chart-pie-36',
+    icon: 'tim-icons icon-chart-pie-36',
     class: ''
   },
   {
     path: '/admin/maps',
     title: 'Maps',
-    icon: 'icon-pin',
-    class: '' },
+    icon: 'tim-icons icon-pin',
+    class: ''
+  },
   {
     path: '/admin/notifications',
     title: 'Notifications',
-    icon: 'icon-bell-55',
+    icon: 'tim-icons icon-bell-55',
     class: ''
   },
   {
     path: '/admin/user',
     title: 'User Profile',
-    icon: 'icon-single-02',
+    icon: 'tim-icons icon-single-02',
     class: ''
   },
   {
     path: '/admin/tables',
     title: 'Table List',
-    icon: 'icon-puzzle-10',
+    icon: 'tim-icons icon-puzzle-10',
+    class: ''
+  },
+  {
+    path: '/admin/challenges',
+    title: 'Challenges',
+    icon: 'fas fa-award',
+    class: ''
+  },
+  {
+    path: '/admin/fleetManagment',
+    title: 'Fleet Managment',
+    icon: 'fas fa-subway',
     class: ''
   }
 ];

@@ -29,19 +29,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.location = location;
     this.sidebarVisible = false;
   }
-
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
-  updateColor = () => {
-    const navbar = document.getElementsByClassName('navbar')[0];
-    if (window.innerWidth < 993 && !this.isCollapsed) {
-      navbar.classList.add('bg-white');
-      navbar.classList.remove('navbar-transparent');
-    } else {
-      navbar.classList.remove('bg-white');
-      navbar.classList.add('navbar-transparent');
-    }
-  }
-
+   updateColor = () => {
+   var navbar = document.getElementsByClassName('navbar')[0];
+     if (window.innerWidth < 993 && !this.isCollapsed) {
+       navbar.classList.add('bg-white');
+       navbar.classList.remove('navbar-transparent');
+     } else {
+       navbar.classList.remove('bg-white');
+       navbar.classList.add('navbar-transparent');
+     }
+   };
   ngOnInit() {
     window.addEventListener("resize", this.updateColor);
     this.listTitles = ROUTES.filter(listTitle => listTitle);
@@ -172,7 +170,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         return this.listTitles[item].title;
       }
     }
-    return 'Dashboard';
+    return "Dashboard";
   }
 
   open(content) {

@@ -1,3 +1,4 @@
+import { ChallengesComponent } from './../../pages/challenges/challenges.component';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
@@ -12,6 +13,7 @@ import { UserComponent } from "../../pages/user/user.component";
 import { TablesComponent } from "../../pages/tables/tables.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FleetManagmentComponent } from 'src/app/pages/fleet-managment/fleet-managment.component';
 
 @NgModule({
   imports: [
@@ -27,6 +29,8 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     TablesComponent,
     NotificationsComponent,
     MapComponent,
+    FleetManagmentComponent,
+    ChallengesComponent
   ]
 })
 export class AdminLayoutModule {}
