@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 declare interface RouteInfo {
   path: string;
@@ -8,27 +8,27 @@ declare interface RouteInfo {
 }
 export const ROUTES: RouteInfo[] = [
   {
-    path: '/admin/dashboard',
-    title: 'Dashboard',
-    icon: 'icon-chart-pie-36',
-    class: ''
+    path: "/dashboard",
+    title: "Dashboard",
+    icon: "tim-icons icon-chart-pie-36",
+    class: ""
   },
   {
-    path: '/admin/maps',
-    title: 'Maps',
-    icon: 'icon-pin',
-    class: '' },
+    path: "/maps",
+    title: "Maps",
+    icon: "tim-icons icon-pin",
+    class: "" },
   {
-    path: '/admin/notifications',
-    title: 'Notifications',
-    icon: 'icon-bell-55',
-    class: ''
+    path: "/notifications",
+    title: "Notifications",
+    icon: "tim-icons icon-bell-55",
+    class: ""
   },
   {
-    path: '/admin/user',
-    title: 'User Profile',
-    icon: 'icon-single-02',
-    class: ''
+    path: "/user",
+    title: "User Profile",
+    icon: "tim-icons icon-single-02",
+    class: ""
   },
   {
     path: '/admin/tables',
@@ -39,15 +39,21 @@ export const ROUTES: RouteInfo[] = [
   {
     path: '/admin/challenges',
     title: 'Table List',
-    icon: 'icon-puzzle-10',
+    icon: 'fas fa-award',
+    class: ''
+  },
+  {
+    path: '/admin/fleetManagment',
+    title: 'Fleet Managment',
+    icon: 'fas fa-subway',
     class: ''
   }
 ];
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: "app-sidebar",
+  templateUrl: "./sidebar.component.html",
+  styleUrls: ["./sidebar.component.css"]
 })
 export class SidebarComponent implements OnInit {
   menuItems: any[];

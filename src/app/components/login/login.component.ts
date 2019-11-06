@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   redirectToDashboard() {
     // TODO: Authenticate
     console.log(this.email, this.password);
-    // this.router.navigateByUrl('/admin/dashboard');
+    this.router.navigateByUrl('/admin/dashboard');
   }
 
 }
