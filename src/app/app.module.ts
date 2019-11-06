@@ -15,7 +15,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { ChallengesComponent } from './pages/challenges/challenges.component';
 
 @NgModule({
   imports: [
@@ -30,7 +29,11 @@ import { ChallengesComponent } from './pages/challenges/challenges.component';
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
