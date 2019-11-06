@@ -14,6 +14,7 @@ import { TablesComponent } from "../../pages/tables/tables.component";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FleetManagmentComponent } from 'src/app/pages/fleet-managment/fleet-managment.component';
+import { LineFormComponent } from 'src/app/pages/fleet-managment/line-form/line-form.component';
 
 @NgModule({
   imports: [
@@ -30,6 +31,9 @@ import { FleetManagmentComponent } from 'src/app/pages/fleet-managment/fleet-man
     NotificationsComponent,
     MapComponent,
     FleetManagmentComponent,
+    LineFormComponent,
+    
+
     ChallengesComponent
   ]
 })

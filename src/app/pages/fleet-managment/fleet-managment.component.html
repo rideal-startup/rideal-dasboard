@@ -1,4 +1,49 @@
 
-<div class="content">
-  big Pug follows the food across the hood! thats good!
-</div>
+
+  <div class=" content">
+
+{{creatLineMode}}
+        <div class="row">
+            <div class="col-md-2">
+              <div ngbDropdown class="d-inline-block" >
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                  Select Lines
+                  <i style="margin-left: 5px;" class="fa fa-chevron-down"></i>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" (click)="loadLine('hola')">
+                  <button ngbDropdownItem>L1</button>
+                  <button ngbDropdownItem>l12</button>
+                  <button ngbDropdownItem>l15</button>
+                  <button ngbDropdownItem>l13</button>
+                </div>
+              </div>
+            </div>
+
+          <div class="col-md-2 createLineButton d-inline-block" >
+            <button class="btn btn-outline-primary" (click)="setCreateLineMode()">
+              Create new line 
+              <i style="margin-left: 5px;" class="fa fa-plus"></i>
+              
+            </button>
+          </div>
+
+          </div>
+
+    <div class="row">
+
+      <div class=" col-md-12" *ngIf="creatLineMode == true">
+        <app-line-form></app-line-form>
+      </div>
+
+      <div class=" col-md-12" *ngIf="creatLineMode == false">
+        <div class=" card card-plain">
+          <div class=" card-header">Google Maps</div>
+          <div class=" card-body"><div class=" map" id="map"></div></div>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+

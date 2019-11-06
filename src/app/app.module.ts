@@ -16,6 +16,7 @@ import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChallengesComponent } from './pages/challenges/challenges.component';
+import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.component';
 
 @NgModule({
   imports: [
