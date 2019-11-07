@@ -1,5 +1,17 @@
-<h2>Create new challenge</h2>
-
+<div class="row">
+  <h2 class="col">Create new challenge</h2>
+  <div class="col text-right">
+    <span class="mr-4 text-white" *ngIf="file">
+      Uploaded file: {{ file?.name }}
+    </span>
+    <label for="file" class="btn btn-warning">Upload multiple</label>
+    <input type="file"
+           id="file"
+           style="visibility:hidden;"
+           accept="json" class="form-control"
+           (change)="handleFileInput($event.target.files)">
+  </div>
+</div>
 <div class="card">
   <div class="card-body">
     <form [formGroup]="challengeForm" (ngSubmit)=onSubmit()>
@@ -49,7 +61,8 @@
       </div>
       <div class="form-group">
         <label>Description</label>
-        <textarea formControlName="description" class=" form-control" placeholder="Here can be your description" rows="4"></textarea>
+        <textarea formControlName="description" class=" form-control" placeholder="Here can be your description"
+          rows="4"></textarea>
       </div>
 
       <button class="btn btn-warning" type="submit" [disabled]="!challengeForm.valid">Submit</button>
