@@ -1,41 +1,30 @@
+
 <div class=" card">
   <div class=" card-header"><h5 class=" title">Edit Profile</h5></div>
   <div class=" card-body">
+
     <form>
       <div class=" row">
         <div class=" col-md-5 pr-md-1">
           <div class=" form-group">
-            <label> Company (disabled) </label>
+            <label> line Name </label>
             <input
               class=" form-control"
-              disabled=""
               placeholder="Company"
               type="text"
               value="Creative Code Inc."
             />
           </div>
         </div>
-        <div class=" col-md-3 px-md-1">
+        <div class=" col-md-5 pr-md-1">
           <div class=" form-group">
-            <label> Username </label>
-            <input
-              class=" form-control"
-              placeholder="Username"
-              type="text"
-              value="michael23"
-            />
+            <label> line Name </label>
+            <input type="checkbox" checked data-toggle="toggle">
+
           </div>
         </div>
-        <div class=" col-md-4 pl-md-1">
-          <div class=" form-group">
-            <label for="exampleInputEmail1"> Email address </label>
-            <input
-              class=" form-control"
-              placeholder="mike@email.com"
-              type="email"
-            />
-          </div>
-        </div>
+        
+        
       </div>
       <div class=" row">
         <div class=" col-md-6 pr-md-1">
@@ -60,19 +49,7 @@
           </div>
         </div>
       </div>
-      <div class=" row">
-        <div class=" col-md-12">
-          <div class=" form-group">
-            <label> Address </label>
-            <input
-              class=" form-control"
-              placeholder="Home Address"
-              type="text"
-              value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-            />
-          </div>
-        </div>
-      </div>
+    
       <div class=" row">
         <div class=" col-md-4 pr-md-1">
           <div class=" form-group">
@@ -81,7 +58,7 @@
               class=" form-control"
               placeholder="City"
               type="text"
-              value="Mike"
+              value="Lleide"
             />
           </div>
         </div>
@@ -92,7 +69,7 @@
               class=" form-control"
               placeholder="Country"
               type="text"
-              value="Andrew"
+              value="Catalunye"
             />
           </div>
         </div>
@@ -107,20 +84,57 @@
           </div>
         </div>
       </div>
-      <div class=" row">
+      
+      <div cdkDropList  class="example-list" (cdkDropListDropped)="dropPoint($event)" class=" row">
+          
         <div class=" col-md-8">
           <div class=" form-group">
-            <label> About Me </label>
-            <textarea
-              class=" form-control"
-              cols="80"
-              placeholder="Here can be your description"
-              rows="4"
-              value="Mike"
-            >
-Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
-</textarea
-            >
+            <label> Add stations </label>
+            <div cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
+                
+            <div class="example-box" *ngFor="let item of linePoints;let i = index" cdkDrag>
+                <div class=" row">
+                    <div class=" col-md-3">Point {{i}}</div>
+                    <div class=" col-md-3">
+                      <div class=" form-group">
+                        <label> Latitud </label>
+                        <input
+                          class=" form-control"
+                          placeholder="ZIP Code"
+                          type="number"
+                        />
+                      </div>
+                    </div>
+                    <div class=" col-md-3">
+                        <div class=" form-group">
+                          <label> Longitud </label>
+                          <input
+                            class=" form-control"
+                            placeholder="ZIP Code"
+                            type="number"
+                          />
+                        </div>
+                      </div>
+                      <div class=" col-md-3">
+                          <button value="Delete"></button>
+                      </div>
+                 
+                 </div>
+            </div>
+          </div>
+            <div class="row">
+
+              <div class=" col-md-12" *ngIf="creatLineMode == true">
+                <app-line-form></app-line-form>
+              </div>
+        
+              <div class=" col-md-12" *ngIf="creatLineMode == false">
+                <div class=" card card-plain">
+                  <div class=" card-header">Google Maps</div>
+                  <div class=" card-body"><div class=" map" id="map"></div></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
