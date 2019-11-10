@@ -20,12 +20,6 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
-    path: '/admin/notifications',
-    title: 'Notifications',
-    icon: 'tim-icons icon-bell-55',
-    class: ''
-  },
-  {
     path: '/admin/user',
     title: 'User Profile',
     icon: 'tim-icons icon-single-02',
@@ -47,6 +41,12 @@ export const ROUTES: RouteInfo[] = [
     path: '/admin/fleetManagment',
     title: 'Fleet Managment',
     icon: 'fas fa-subway',
+    class: ''
+  },
+  {
+    path: '/admin/ranking',
+    title: 'Ranking',
+    icon: 'fas fa-trophy',
     class: ''
   }
 ];
