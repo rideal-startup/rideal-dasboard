@@ -1,8 +1,6 @@
 
-
   <div class=" content">
 
-        {{creatLineMode}}
         <div class="row">
             <div class="col-md-2">
               <div ngbDropdown class="d-inline-block" >
@@ -30,20 +28,9 @@
           </div>
 
     <div class="row">
-
-      <div class=" col-md-12" *ngIf="creatLineMode == true">
+      <div class=" col-md-12">
         <app-line-form></app-line-form>
       </div>
-
-      <div class=" col-md-12" *ngIf="creatLineMode == false">
-        <div class=" card card-plain">
-          <div class=" card-header">Google Maps</div>
-          <div class=" card-body"><div class=" map" id="map"></div></div>
-        </div>
-      </div>
     </div>
-
-    
-
-  </div>
+   
 

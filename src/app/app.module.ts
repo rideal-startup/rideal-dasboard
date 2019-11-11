@@ -15,14 +15,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ChallengesComponent } from './pages/challenges/challenges.component';
 import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.component';
 
 
 @NgModule({
   imports: [
-    DragDropModule,
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,

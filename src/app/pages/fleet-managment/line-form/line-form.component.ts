@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { FormControl } from '@angular/forms';
+import { FormControl, SelectMultipleControlValueAccessor } from '@angular/forms';
+
+import { DndDropEvent } from 'ngx-drag-drop';
+
+declare const google: any;
+
 
 @Component({
   selector: 'app-line-form',
@@ -9,53 +14,294 @@ import { FormControl } from '@angular/forms';
 })
 export class LineFormComponent implements OnInit {
 
-  hexaColor:string = "#BC9166";
-  linePoints:mapPoint[] = [
-    new mapPoint(41.689426, 0.722586)
-    ,new mapPoint(11.689426, 0.422586)
+  hexaColor: string = "#BC9166";
+  fullMapMode = false;
+  map:any;
+  currentId = 2;
+
+  linePoints: mapPoint[] = [
+    new mapPoint(1,"Los Santos", 41.689426, 20.722586,null),
+    new mapPoint(2,"S.Andreas", 30.689426, 10.422586,null)
   ];
 
-  isCircular:boolean = false;
- movies = [
-  'Episode I - The Phantom Menace',
-  'Episode II - Attack of the Clones',
-  'Episode III - Revenge of the Sith',
-  'Episode IV - A New Hope',
-  'Episode V - The Empire Strikes Back',
-  'Episode VI - Return of the Jedi',
-  'Episode VII - The Force Awakens',
-  'Episode VIII - The Last Jedi'
-];
+  isCircular: boolean = false;
+
   constructor() {}
 
   ngOnInit() {}
 
+  ngAfterViewInit() {
+    
+  
+    this.mapSetUp();
+   }
 
-  public addStation(){
-    this.linePoints.push(new mapPoint(11.689426, 0.422586))
+  public addStation() {
+    this.currentId += 1;
+    this.linePoints.push(new mapPoint(this.currentId,"", null, null,
+      null
+    ));
+
+    this.linePoints[this.linePoints.length-1].marker.setMap(this.map);
   }
 
-  public deletStation( index:number) {
-    this.linePoints.slice(index,index);
+  public deletStation( index: number) {
+    this.linePoints[index].marker.setMap(null);
+    this.linePoints.splice(index, 1);
   }
 
   dropPoint(event: CdkDragDrop<mapPoint[]>) {
     moveItemInArray(this.linePoints, event.previousIndex, event.currentIndex);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-  }
+  /**
+   * MAP ZONE
+   * 
+   */
+
+  mapSetUp() {
+
+    var myLatlng = new google.maps.LatLng(41.689426, 20.722586);
+    var mapOptions = {
+        zoom: 13,
+        center: myLatlng,
+        scrollwheel: false, //we disable de scroll over the map, it is a really annoing when you scroll through page
+        styles: [{
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#1d2c4d"
+            }]
+          },
+          {
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#8ec3b9"
+            }]
+          },
+          {
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+              "color": "#1a3646"
+            }]
+          },
+          {
+            "featureType": "administrative.country",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+              "color": "#4b6878"
+            }]
+          },
+          {
+            "featureType": "administrative.land_parcel",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#64779e"
+            }]
+          },
+          {
+            "featureType": "administrative.province",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+              "color": "#4b6878"
+            }]
+          },
+          {
+            "featureType": "landscape.man_made",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+              "color": "#334e87"
+            }]
+          },
+          {
+            "featureType": "landscape.natural",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#023e58"
+            }]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#283d6a"
+            }]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#6f9ba5"
+            }]
+          },
+          {
+            "featureType": "poi",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+              "color": "#1d2c4d"
+            }]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "geometry.fill",
+            "stylers": [{
+              "color": "#023e58"
+            }]
+          },
+          {
+            "featureType": "poi.park",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#3C7680"
+            }]
+          },
+          {
+            "featureType": "road",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#304a7d"
+            }]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#98a5be"
+            }]
+          },
+          {
+            "featureType": "road",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+              "color": "#1d2c4d"
+            }]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#2c6675"
+            }]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{
+              "color": "#9d2a80"
+            }]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+              "color": "#9d2a80"
+            }]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#b0d5ce"
+            }]
+          },
+          {
+            "featureType": "road.highway",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+              "color": "#023e58"
+            }]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#98a5be"
+            }]
+          },
+          {
+            "featureType": "transit",
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+              "color": "#1d2c4d"
+            }]
+          },
+          {
+            "featureType": "transit.line",
+            "elementType": "geometry.fill",
+            "stylers": [{
+              "color": "#283d6a"
+            }]
+          },
+          {
+            "featureType": "transit.station",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#3a4762"
+            }]
+          },
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{
+              "color": "#0e1626"
+            }]
+          },
+          {
+            "featureType": "water",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+              "color": "#4e6d70"
+            }]
+          }
+        ]
+    };
+
+    this.map = new google.maps.Map(document.getElementById("fleetMap"), mapOptions);
+
+    this.refreshMapMarkers();
+}
+
+public refreshMapMarkers() {
+  console.log("Refresh!");
+  
+  this.linePoints.forEach(item => {
+    //item.marker.setMap(null);
+    if(item.marker !=null ){item.marker.setMap(null);}
+    item.marker = null;
+    console.log(item.id+"item.latitude: "+item.latitude);
+    console.log(item.id+"item.longitude: "+item.longitude);
+    item.marker = new google.maps.Marker({
+      position: new google.maps.LatLng(item.latitude, item.longitude),
+      title: item.name});
+
+    item.marker.setMap(this.map);
+  });
+}
+
+public setCreateLineMode() {
+  console.log("setCreateLineMode");
+  this.fullMapMode = true;
+}
+
+public loadLine(id:string) {
+console.log("setCreateLineMode");
+  this.fullMapMode = false;
+}
 
 }
 
 // tslint:disable-next-line: no-unused-expression
 class mapPoint {
+  public id: number
+  public name: string
   public latitude: number;
   public longitude: number;
+  public marker: any;
 
-  constructor(latitude: number, longitude: number){
+  constructor(id:number,name:string, latitude: number, longitude: number, marker:any) {
+    this.name = name;
+    this.id = id;
     this.latitude = latitude;
     this.longitude = longitude;
+    this.marker = marker;
     }
 }

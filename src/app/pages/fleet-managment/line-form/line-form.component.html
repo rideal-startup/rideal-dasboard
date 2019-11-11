@@ -32,7 +32,8 @@
             <label> Color(hex) </label>
             <input
               class=" form-control"
-              type="text"
+              name="colorhex"
+              placeholder="#111111"
               [(ngModel)]="hexaColor"
             />
           </div>
@@ -43,8 +44,8 @@
         <div class=" col-md-6 pl-md-1">
           <div class=" form-group">
             <label>  </label>
-            <div style="height: 30px; width: 50px;margin-top:8px;" [ngStyle]="{'background-color': hexaColor}">
-            {{hexaColor}}
+            <div class="colorContainer" [ngStyle]="{'background-color': hexaColor}">
+            <div style="margin:5px;">{{hexaColor}}</div>
             </div><!-- {hexaColor} -->
           </div>
         </div>
@@ -84,58 +85,82 @@
           </div>
         </div>
       </div>
-      
+
       <div cdkDropList  class="example-list" (cdkDropListDropped)="dropPoint($event)" class=" row">
           
-        <div class=" col-md-8">
+        <div class=" col-md-6">
           <div class=" form-group">
-            <label> Add stations </label>
-            <div cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
-                
-            <div class="example-box" *ngFor="let item of linePoints;let i = index" cdkDrag>
+            <label> Add stations
+              
+            </label>
+            <button style="margin-left: 10px;"value="add" (click)="addStation()">
+               <i class="fa fa-plus"></i>
+            </button>
+            <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
+              
+            <div class="example-box" *ngFor="let item of linePoints; let i = index" cdkDrag>
                 <div class=" row">
-                    <div class=" col-md-3">Point {{i}}</div>
+                    <div class=" col-md-2" >Point {{i}}, id: {{item.id}}</div>
+                    <div class=" col-md-3">
+                        <div class=" form-group">
+                          <label style="color:black;font-weight: bold;"> Name </label>
+                          <input
+                            style="color:black;"
+                            class=" form-control"
+                            placeholder="Name"
+                            name="name {{i}}"
+                            [(ngModel)]="item.name"
+                          
+                            (change)="refreshMapMarkers()"
+                            (keyup)="refreshMapMarkers()"
+                          /><!-- [(ngModel)]="item.latitude"-->
+                        </div>
+                      </div>
                     <div class=" col-md-3">
                       <div class=" form-group">
-                        <label> Latitud </label>
+                        <label style="color:black;"> Latitud </label>
                         <input
+                          style="color:black;"
                           class=" form-control"
-                          placeholder="ZIP Code"
+                          placeholder="latitude"
                           type="number"
-                        />
+                          name="latitude {{i}}"
+                          [(ngModel)]="item.latitude"
+                        
+                          (change)="refreshMapMarkers()"
+                          (keyup)="refreshMapMarkers()"
+                        /><!-- [(ngModel)]="item.latitude"-->
                       </div>
                     </div>
                     <div class=" col-md-3">
                         <div class=" form-group">
-                          <label> Longitud </label>
+                          <label style="color:black;"> Longitud </label>
                           <input
+                            style="color:black;"
                             class=" form-control"
-                            placeholder="ZIP Code"
+                            placeholder="longitude"
+                            name="longitude {{i}}"
+                            [(ngModel)]="item.longitude"
+                            (change)="refreshMapMarkers()"
+                            (keyup)="refreshMapMarkers()"
                             type="number"
                           />
                         </div>
                       </div>
-                      <div class=" col-md-3">
-                          <button value="Delete"></button>
+                      <div class=" col-md-1">
+                          <button value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
                       </div>
                  
                  </div>
             </div>
           </div>
-            <div class="row">
-
-              <div class=" col-md-12" *ngIf="creatLineMode == true">
-                <app-line-form></app-line-form>
-              </div>
-        
-              <div class=" col-md-12" *ngIf="creatLineMode == false">
-                <div class=" card card-plain">
-                  <div class=" card-header">Google Maps</div>
-                  <div class=" card-body"><div class=" map" id="map"></div></div>
-                </div>
-              </div>
-            </div>
           </div>
+        </div>
+        <div class="col-md-6">   
+          <div class=" card card-plain">
+            <!-- <div class=" card-header">Google Maps</div>-->
+            <div class=" card-body"><div #fleetMap class=" map" id="fleetMap"></div></div>
+          </div>  
         </div>
       </div>
     </form>
@@ -144,3 +169,5 @@
     <button class=" btn btn-fill btn-danger" type="submit">Save</button>
   </div>
 </div>
+
+
