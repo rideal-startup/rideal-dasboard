@@ -45,7 +45,7 @@
           <div class=" form-group">
             <label>  </label>
             <div class="colorContainer" [ngStyle]="{'background-color': hexaColor}">
-            <div style="margin:5px;">{{hexaColor}}</div>
+            <div class="textInsideColorContainer">{{hexaColor}}</div>
             </div><!-- {hexaColor} -->
           </div>
         </div>
@@ -86,7 +86,7 @@
         </div>
       </div>
 
-      <div cdkDropList  class="example-list" (cdkDropListDropped)="dropPoint($event)" class=" row">
+      <div cdkDropList (cdkDropListDropped)="dropPoint($event)" class=" row">
           
         <div class=" col-md-6">
           <div class=" form-group">
@@ -98,7 +98,7 @@
             </button>
             <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
               
-            <div class="example-box" *ngFor="let item of linePoints; let i = index" cdkDrag>
+            <div class=" example-box" *ngFor="let item of linePoints; let i = index" cdkDrag>
                 <div class=" row">
                     <div class=" col-md-2" >Point {{i}}, id: {{item.id}}</div>
                     <div class=" col-md-3">

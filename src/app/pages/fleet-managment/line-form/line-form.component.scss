@@ -1,3 +1,22 @@
+// basics
+$default:       #344675 !default;
+$primary:       #e14eca !default;
+$secondary:     #f4f5f7 !default;
+$success:       #00f2c3 !default;
+$info:          #1d8cf8 !default;
+$warning:       #ff8d72 !default;
+$danger:        #fd5d93 !default;
+$black:         #222a42 !default;
+
+// gradient
+$default-states:       #263148 !default;
+$primary-states:       #ba54f5 !default;
+$success-states:       #0098f0 !default;
+$info-states:          #3358f4 !default;
+$warning-states:       #ff6491 !default;
+$danger-states:        #ec250d !default;
+$black-states:         #1d253b !default;
+
 .colorContainer{
   text-align: center;
   color:rgba(0, 0, 0, 0.87);
@@ -7,56 +26,86 @@
   border: rgba(32, 31, 31, 0.87) 1px;
   border-radius: 40px 10px;  
 }
+
+.textInsideColorContainer{
+  margin:5px;color: whitesmoke;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
 .example-list {
-    width: 100%;
-    max-width: 100%;
-    border: solid 1px rgb(145, 131, 131);
-    min-height: 60px;
-    display: block;
-    background: rgb(145, 131, 131);
-    border-radius: 4px;
-    overflow: hidden;
+  &, &[info="black-content"]{
+    background: #27293d;
   }
+  &[info="white-content"]{
+    background: #ffffff;
+  }
+
+  width: 100%;
+  max-width: 100%;
+  min-height: 60px;
+  display: block;
+  background: #27293d;
+  border-radius: 4px;
+  overflow: hidden;
+}
   
-  .example-box {
-    padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    cursor: move;
-    background: white;
-    font-size: 14px;
+.example-box {
+
+  &, &[data="red"]{
+    background: linear-gradient($danger-states, $danger);
   }
+  &[data="blue"]{
+    background: linear-gradient($info-states, $info);
+  }
+  &[data="green"]{
+    background: linear-gradient($success-states, $success);
+  }
+  &[data="primary"]{
+    background: linear-gradient($primary-states, $primary);
+  }
+
+  padding: 20px 10px;
+  background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+}
   
-  .cdk-drag-preview {
-    box-sizing: border-box;
-    border-radius: 4px;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  }
+.example-box:last-child {
+  margin-bottom: 0px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: 
   
-  .cdk-drag-placeholder {
-    opacity: 0;
-  }
-  
-  .cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
-  
-  .example-box:last-child {
-    border: none;
-  }
-  
-  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: 
-    
-    transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
+  transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
 
   /* Animate items as they're being sorted. */
 .cdk-drop-list-dragging .cdk-drag {
@@ -71,8 +120,5 @@
 
 
 
-
-
-
-
+// maybe works
 
