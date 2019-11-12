@@ -98,7 +98,7 @@
             </button>
             <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
               
-            <div class=" example-box" *ngFor="let item of linePoints; let i = index" cdkDrag>
+            <div class=" example-box" *ngFor="let item of linePoints; let i = index" id="pointsContainer" #pointsContainer cdkDrag>
                 <div class=" row">
                     <div class=" col-md-2" >Point {{i}}, id: {{item.id}}</div>
                     <div class=" col-md-3">
@@ -125,7 +125,7 @@
                           placeholder="latitude"
                           type="number"
                           name="latitude {{i}}"
-                          [(ngModel)]="item.latitude"
+                          [(ngModel)]="item.lat"
                         
                           (change)="refreshMapMarkers()"
                           (keyup)="refreshMapMarkers()"
@@ -140,7 +140,7 @@
                             class=" form-control"
                             placeholder="longitude"
                             name="longitude {{i}}"
-                            [(ngModel)]="item.longitude"
+                            [(ngModel)]="item.lng"
                             (change)="refreshMapMarkers()"
                             (keyup)="refreshMapMarkers()"
                             type="number"

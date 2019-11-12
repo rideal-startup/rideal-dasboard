@@ -50,6 +50,7 @@ $black-states:         #1d253b !default;
   
 .example-box {
 
+  
   &, &[data="red"]{
     background: linear-gradient($danger-states, $danger);
   }
@@ -62,9 +63,8 @@ $black-states:         #1d253b !default;
   &[data="primary"]{
     background: linear-gradient($primary-states, $primary);
   }
-
   padding: 20px 10px;
-  background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
+  //background: linear-gradient(0deg, #ba54f5 0%, #e14eca 100%);
   color: rgba(0, 0, 0, 0.87);
   margin-bottom: 10px;
   display: flex;
@@ -75,6 +75,8 @@ $black-states:         #1d253b !default;
   cursor: move;
   background: white;
   font-size: 14px;
+
+
 }
   
 .example-box:last-child {

@@ -15,6 +15,9 @@ declare const google: any;
 })
 export class LineFormComponent implements OnInit {
   hexaColor: string = "#BC9166";
+
+  sidebarColor: any = "blue";
+
   fullMapMode = false;
   map: any;
   currentId = 2;
@@ -29,12 +32,16 @@ export class LineFormComponent implements OnInit {
   constructor(
     private themeService: ThemeService
   ) {
-    themeService.sidebarColor.subscribe(sidebarColor =>
-      this.changeSidebarColor(sidebarColor));
+    themeService.sidebarColor.subscribe(sidebarColor =>{
+      this.sidebarColor = sidebarColor;
+      this.changeSidebarColor(sidebarColor);
+    });
     themeService.mainPanelColor.subscribe(mainPanelColor => {
       this.changeDashboardColor(mainPanelColor);
     }
       );
+
+
   }
 
   ngOnInit() { }
@@ -44,16 +51,18 @@ export class LineFormComponent implements OnInit {
   }
 
   public addStation() {
+
     this.currentId += 1;
     this.linePoints.push(new mapPoint(this.currentId, "", null, null,
       null
     ));
-
-    this.linePoints[this.linePoints.length - 1].marker.setMap(this.map);
+    const that = this;
+    //this.linePoints[this.linePoints.length - 1].marker.setMap(this.map);
+    setTimeout(function(){ that.changeSidebarColor(that.sidebarColor); }, 50);
   }
 
   public deletStation(index: number) {
-    this.linePoints[index].marker.setMap(null);
+    if(this.linePoints[index].marker != null){this.linePoints[index].marker.setMap(null);}
     this.linePoints.splice(index, 1);
   }
 
@@ -274,10 +283,10 @@ export class LineFormComponent implements OnInit {
       //item.marker.setMap(null);
       if (item.marker != null) { item.marker.setMap(null); }
       item.marker = null;
-      console.log(item.id + "item.latitude: " + item.latitude);
-      console.log(item.id + "item.longitude: " + item.longitude);
+      console.log(item.id + "item.latitude: " + item.lat);
+      console.log(item.id + "item.longitude: " + item.lng);
       item.marker = new google.maps.Marker({
-        position: new google.maps.LatLng(item.latitude, item.longitude),
+        position: new google.maps.LatLng(item.lat, item.lng),
         title: item.name
       });
 
@@ -319,15 +328,15 @@ export class LineFormComponent implements OnInit {
 class mapPoint {
   public id: number
   public name: string
-  public latitude: number;
-  public longitude: number;
+  public lat: number;
+  public lng: number;
   public marker: any;
 
-  constructor(id: number, name: string, latitude: number, longitude: number, marker: any) {
+  constructor(id: number, name: string, lat: number, lng: number, marker: any) {
     this.name = name;
     this.id = id;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.lat = lat;
+    this.lng = lng;
     this.marker = marker;
   }
 }
