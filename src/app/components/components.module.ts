@@ -11,12 +11,15 @@ import { LoginComponent } from './login/login.component';
 import { FleetManagmentComponent } from '../pages/fleet-managment/fleet-managment.component';
 import { LineFormComponent } from '../pages/fleet-managment/line-form/line-form.component';
 
+import { QRCodeModule } from 'angularx-qrcode';
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    QRCodeModule
   ],
   declarations: [
     FooterComponent,

@@ -32,7 +32,11 @@ import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.c
     AppRoutingModule,
     ToastrModule.forRoot()
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  declarations: [
+    AppComponent,
+    AdminLayoutComponent,
+    AuthLayoutComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
