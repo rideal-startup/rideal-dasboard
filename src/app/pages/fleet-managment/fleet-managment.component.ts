@@ -17,7 +17,9 @@ interface Marker {
 })
 export class FleetManagmentComponent implements OnInit {
 
-  creatLineMode = false;
+  lineSelected: Object;
+
+  displayInfo = false;
 
   constructor() { }
 
@@ -25,12 +27,13 @@ export class FleetManagmentComponent implements OnInit {
 
   public setCreateLineMode() {
     console.log("setCreateLineMode");
-    this.creatLineMode = true;
+    this.displayInfo = true;
   }
 
   public loadLine(id:string) {
+    //lineSelected = HTTTP GET
     console.log("setCreateLineMode");
-    this.creatLineMode = false;
+    this.displayInfo = true;
   }
 
 }

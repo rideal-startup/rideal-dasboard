@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormControl, SelectMultipleControlValueAccessor } from '@angular/forms';
 
@@ -14,6 +14,8 @@ declare const google: any;
   styleUrls: ['./line-form.component.scss']
 })
 export class LineFormComponent implements OnInit {
+  @Input('currentLine') currentLine: Object;
+
   hexaColor: string = "#BC9166";
 
   sidebarColor: any = "blue";
@@ -21,7 +23,7 @@ export class LineFormComponent implements OnInit {
   fullMapMode = false;
   map: any;
   currentId = 2;
-
+  
   linePoints: mapPoint[] = [
     new mapPoint(1, "Los Santos", 41.689426, 20.722586, null),
     new mapPoint(2, "S.Andreas", 30.689426, 10.422586, null)
@@ -53,7 +55,7 @@ export class LineFormComponent implements OnInit {
   public addStation() {
 
     this.currentId += 1;
-    this.linePoints.push(new mapPoint(this.currentId, "", null, null,
+    this.linePoints.unshift(new mapPoint(this.currentId, "", null, null,
       null
     ));
     const that = this;

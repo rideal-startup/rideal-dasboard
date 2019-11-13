@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 //import { InjectorInstance } from '../app/app.module';
 import { Observable } from 'rxjs';
 import { ResolveEnd } from '@angular/router';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 import { reject } from 'q';
 import { Injectable } from '@angular/core';
 import { CompileTemplateMetadata } from '@angular/compiler';
@@ -26,13 +26,26 @@ export class Service {
 
     requestOpt = requestOptions;
 
-  constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {}
+
+/**
+ *  PROFILE INFO CALLS
+ */
+  public getProfile(id: string): Observable<any> {
+    return this.http.get<any>(environment.API_BASE_URL + environment.API_PROFILE_URL + '?recordId=' + id,  this.requestOpt);
+  }
+  public updateProfile(line: Object): Observable<any> {
+    return this.http.put<any>(environment.API_BASE_URL + environment.API_PROFILE_URL, line,  this.requestOpt);
+  }
 
   /**
    *  FLEET MANAGMENT CALLS
    */
+  public getLineList(id: string): Observable<any> {
+    return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL,  this.requestOpt);
+  }
   public getLine(id: string): Observable<any> {
-    return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL + "?recordId=" + id,  this.requestOpt);
+    return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL + '?recordId=' + id,  this.requestOpt);
   }
   public createLine(line: Object): Observable<any> {
     return this.http.post<any>(environment.API_BASE_URL + environment.API_LINES_URL, line,  this.requestOpt);
@@ -41,19 +54,19 @@ export class Service {
     return this.http.put<any>(environment.API_BASE_URL + environment.API_LINES_URL, line,  this.requestOpt);
   }
   public deleteLine(id: string): Observable<any> {
-    return this.http.delete<any>(environment.API_BASE_URL + environment.API_LINES_URL+ "?recordId=" + id,  this.requestOpt);
+    return this.http.delete<any>(environment.API_BASE_URL + environment.API_LINES_URL + '?recordId=' + id,  this.requestOpt);
   }
 
 
 
-  /* EXAMPLE CALLS */
+  /* EXAMPLE CALLS 
   public sendRequest(): Observable<any> {
     return this.http.post<any>(environment.API_BASE_URL + environment.API_SEND_REPORT_URL, "requestBody", this.requestOpt); // /fake3
   }
 
   public loadRecord(componentID: string, id: string) {
     return this.http.get<any>(environment.API_BASE_URL + environment.API_GET_RECORD_BY_ID_URL + "?recordId=" + id + "&elementType=" + componentID , this.requestOpt);
-  }
+  }*/
 
 
 

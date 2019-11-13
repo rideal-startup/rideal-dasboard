@@ -22,6 +22,7 @@ import { LineFormComponent } from 'src/app/pages/fleet-managment/line-form/line-
 import { DndModule } from 'ngx-drag-drop';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { QRCodeModule } from 'angularx-qrcode';
+import { AuthenticationBasicService } from 'src/app/services/authentication-basic.service';
 
 @NgModule({
   imports: [
@@ -47,6 +48,9 @@ import { QRCodeModule } from 'angularx-qrcode';
     CreateChallengeComponent,
     RankingComponent,
     PodiumComponent
+  ],
+  providers: [
+    AuthenticationBasicService,
   ]
 })
 export class AdminLayoutModule {}
