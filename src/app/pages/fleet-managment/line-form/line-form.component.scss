@@ -17,6 +17,9 @@ $warning-states:       #ff6491 !default;
 $danger-states:        #ec250d !default;
 $black-states:         #1d253b !default;
 
+.row{
+  //height: 80px;
+}
 .colorContainer{
   text-align: center;
   color:rgba(0, 0, 0, 0.87);

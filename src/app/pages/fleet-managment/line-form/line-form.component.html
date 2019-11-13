@@ -7,7 +7,7 @@
       <div class=" row">
         <div class=" col-md-5 pr-md-1">
           <div class=" form-group">
-            <label> line Name </label>
+            <label> Line Name </label>
             <input
               class=" form-control"
               placeholder="Company"
@@ -16,11 +16,14 @@
             />
           </div>
         </div>
-        <div class=" col-md-5 pr-md-1">
+        <div class=" col-md-7 pr-md-1">
           <div class=" form-group">
-            <label> line Name </label>
-            <input type="checkbox" checked data-toggle="toggle">
-
+            <label> Line Type </label>
+            <div class="row">
+            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input type="radio" name="optradio" checked>Unidirectional</div>
+            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input type="radio" name="optradio">Bidirectional</div>
+            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input type="radio" name="optradio">Circular</div>
+            </div>
           </div>
         </div>
         
@@ -99,8 +102,13 @@
             <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
               
             <div class=" example-box" *ngFor="let item of linePoints; let i = index" id="pointsContainer" #pointsContainer cdkDrag>
-                <div class=" row">
-                    <div class=" col-md-2" >Point {{i}}, id: {{item.id}}</div>
+                <div  style="widows: 100%;"class=" row">
+                    <div class=" col-md-12">
+                      Point {{i}}, id: {{item.id}}
+                      <div style="float:right;float:top;">
+                        <i style="font-size: 2.23em;" class="fa fa-bars"></i>
+                      </div>
+                  </div>
                     <div class=" col-md-3">
                         <div class=" form-group">
                           <label style="color:black;font-weight: bold;"> Name </label>
@@ -147,9 +155,22 @@
                           />
                         </div>
                       </div>
-                      <div class=" col-md-1">
+                      
+                      <!--<div class=" col-md-3">
+                        <div class=" form-group">
+                          <label style="color:black;">  </label>
+                          <div style="float:right; margin-bottom: 0%;">
+                            <button value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
+                          </div>
+                        </div>
+                      </div>-->
+                      <div class=" col-md-12">
+                        <div style = "float:right">
                           <button value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
+                        </div>
                       </div>
+                      
+    
                  
                  </div>
             </div>
