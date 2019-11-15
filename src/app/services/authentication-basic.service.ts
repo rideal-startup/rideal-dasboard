@@ -20,8 +20,8 @@ export class AuthenticationBasicService {
     };
     //return this.http.get(`${environment.API_BASE_URL}/identity`, httpOptions).pipe(
     return this.http.get(`${environment.API_BASE_URL}/identity`, httpOptions).pipe(
-      map(data => {
-        const user: User = new User(data);
+      map((data: User) => {
+        const user: User = data;
         user.authorization = authorization;
         user.password = password;
         return user;
@@ -46,11 +46,7 @@ export class AuthenticationBasicService {
   }
 
   getCurrentUser(): User {
-    return new User(JSON.parse(localStorage.getItem('currentUser')));
+    return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
 
-  isAdmin(): boolean {
-    const user: User = this.getCurrentUser();
-    return user.authorities[0].authority === 'ROLE_ADMIN';
-  }
 }

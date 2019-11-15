@@ -8,12 +8,13 @@ import { environment } from '../../environments/environment';
 import { reject } from 'q';
 import { Injectable } from '@angular/core';
 import { CompileTemplateMetadata } from '@angular/compiler';
+import { Line } from '../domain/line';
 
 //import { requestOptions } from '../assets/models/headers';
 //import { HttpHeaders } from '@angular/common/http';
 
 const HeadG = {
-    'Accept' : 'application/json',
+    Accept : 'application/json',
     'Content-Type' : 'application/json'
   }
   
@@ -34,6 +35,7 @@ export class Service {
   public getProfile(id: string): Observable<any> {
     return this.http.get<any>(environment.API_BASE_URL + environment.API_PROFILE_URL + '?recordId=' + id,  this.requestOpt);
   }
+  
   public updateProfile(line: Object): Observable<any> {
     return this.http.put<any>(environment.API_BASE_URL + environment.API_PROFILE_URL, line,  this.requestOpt);
   }
@@ -45,16 +47,16 @@ export class Service {
     return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL,  this.requestOpt);
   }
   public getLine(id: string): Observable<any> {
-    return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL + '?recordId=' + id,  this.requestOpt);
+    return this.http.get<any>(environment.API_BASE_URL + environment.API_LINES_URL + '/' + id,  this.requestOpt);
   }
-  public createLine(line: Object): Observable<any> {
+  public createLine(line: Line): Observable<any> {
     return this.http.post<any>(environment.API_BASE_URL + environment.API_LINES_URL, line,  this.requestOpt);
   }
-  public updateLine(line: Object): Observable<any> {
+  public updateLine(line: Line): Observable<any> {
     return this.http.put<any>(environment.API_BASE_URL + environment.API_LINES_URL, line,  this.requestOpt);
   }
   public deleteLine(id: string): Observable<any> {
-    return this.http.delete<any>(environment.API_BASE_URL + environment.API_LINES_URL + '?recordId=' + id,  this.requestOpt);
+    return this.http.delete<any>(environment.API_BASE_URL + environment.API_LINES_URL + '/' + id,  this.requestOpt);
   }
 
 

@@ -1,16 +1,14 @@
 import {Authority} from './authority';
+import { City } from './city';
 
 export class User {
   id: string;
-  uri: string;
-  username = '';
+  username: string;
+  name: string; // enterprice
+  city: City;
+  adress: string;
   email: string;
-  authorities: Authority[] = [];
   _links: any = {};
-  authorization = '';
+  authorization: string;
   password = '';
-
-  constructor(values: Object = {}) {
-    Object.assign(<any>this, values);
-  }
 }

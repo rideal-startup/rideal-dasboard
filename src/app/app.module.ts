@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ChallengesComponent } from './pages/challenges/challenges.component';
 import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.component';
+import { AuthenticationBasicService } from './services/authentication-basic.service';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.c
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [],
+  providers: [AuthenticationBasicService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
