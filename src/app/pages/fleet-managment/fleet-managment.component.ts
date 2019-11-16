@@ -1,3 +1,5 @@
+import { MapComponent } from './../map/map.component';
+import { LineService } from './../../services/lineservice.service';
 import { Component, OnInit } from '@angular/core';
 import { LineFormComponent } from './line-form/line-form.component';
 import { Line } from 'src/app/domain/line';
@@ -23,41 +25,7 @@ interface Marker {
 export class FleetManagmentComponent implements OnInit {
 
   lineSelected: Line;
-  filled_lineSelected =  {
-    id: '1',
-    available: true,
-    length: 4,
-    onFreeDays: true,
-    name: ' Linia 1',
-    color: '#FF1111', // Hexadecimal color code
-    city: {
-      id: '1',
-      name: 'Lleida',
-      country: 'Catalunya',
-      postalCode: '25690',
-    },
-    routeType: RouteTypeEnum.CIRCULAR,
-    stops : [
-      {
-        name: 'Los Santos',
-        location: {
-          lat: 41.689426,
-          long: 20.722586,
-        } as Coordinates,
-        waitTime: 11,
-        order: 1,
-      } as Stop,
-      {
-        name: 'S.Andreas',
-        location: {
-          lat: 30.689426,
-          long: 10.422586,
-        } as Coordinates,
-        waitTime: 11,
-        order: 2,
-      } as Stop,
-    ],
-  } as Line;
+
 
   empty_lineSelected =  {
     id: '1',
@@ -78,14 +46,30 @@ export class FleetManagmentComponent implements OnInit {
 
   displayInfo = false;
 
-  constructor() { }
+  public lines: Line[];
+  public loadingLines = true;
+  public selectedLine: Line = null;
 
-  ngOnInit() {}
+  constructor(private lineService: LineService) { }
+
+  ngOnInit() {
+    this.lineService.getLineList().subscribe(
+      lines => {
+        this.lines = lines;
+        this.selectedLine = lines[0];
+        this.loadingLines = false;
+      }
+    );
+  }
 
   public setCreateLineMode() {
     console.log('setCreateLineMode');
     this.lineSelected = this.empty_lineSelected;
     this.displayInfo = true;
+  }
+
+  public selectLine(line: Line) {
+    this.selectedLine = line;
   }
 
   public loadLine(id: string) {

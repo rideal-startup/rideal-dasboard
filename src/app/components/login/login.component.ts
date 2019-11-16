@@ -12,25 +12,27 @@ import { Route } from '@angular/compiler/src/core';
 export class LoginComponent implements OnInit {
   public username: string;
   public password: string;
+  public loginError = false;
 
-  constructor(private authenticationService: AuthenticationBasicService, private router: Router) {}
+  constructor(
+    private authenticationService: AuthenticationBasicService,
+    private router: Router) {}
 
   ngOnInit() {
   }
 
-  onSubmit(): void {
-    this.redirectToDashboard();//remove
+  onSubmit() {
     this.authenticationService.login(this.username, this.password)
-      .subscribe(
-        user => {
+      .subscribe(user => {
         this.authenticationService.storeCurrentUser(user);
+        this.redirectToDashboard();
+      }, error => {
+        console.log(error);
+        this.loginError = true;
       });
   }
 
-
-    redirectToDashboard() {
-      // TODO: Authenticate
-      console.log(this.username, this.password);
-      this.router.navigateByUrl('/admin/dashboard');
-    }
+  redirectToDashboard() {
+    this.router.navigateByUrl('/admin/dashboard');
+  }
 }

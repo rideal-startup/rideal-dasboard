@@ -28,3 +28,9 @@
     <button (click)="onSubmit()" class=" btn btn-fill btn-danger" type="submit">Login</button>
   </div>
 </div>
+
+<div *ngIf="loginError" class="alert alert-danger w-25 text-center mt-4" style="margin: auto;" role="alert">
+  Incorrect credentials
+</div>
+
+

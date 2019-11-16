@@ -1,10 +1,9 @@
+export class Coordinates {
+  lat: number;
+  lng: number;
 
- export class Coordinates {
-    lat: number;
-    long: number;
-
-     constructor(lat: number, long: number) {
-        this.lat = lat;
-        this.long = long;
-     }
- }
+  constructor(lat: number, lng: number) {
+    this.lat = lat;
+    this.lng = lng;
+  }
+}

@@ -1,195 +1,141 @@
-
 <div class=" card">
-  <div class=" card-header"><h5 class=" title">Edit Profile</h5></div>
+  <div class=" card-header">
+    <h4 class=" title">Edit line</h4>
+  </div>
   <div class=" card-body">
-
     <form>
       <div class=" row">
         <div class=" col-md-5 pr-md-1">
           <div class=" form-group">
             <label> Line Name </label>
-            <input
-              class=" form-control"
-              placeholder="Company"
-              type="text"
-              value="Creative Code Inc."  
-              name = "name"          
-              [(ngModel)]="currentLine.name"
-            />
+            <input class=" form-control" placeholder="Company" type="text" value="Creative Code Inc." name="name"
+              [(ngModel)]="currentLine.name" />
           </div>
         </div>
         <div class=" col-md-7 pr-md-1">
           <div class=" form-group">
             <label> Line Type </label>
             <div class="row">
-            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input style="margin-right: 5px;" type="radio" name="optradio" checked>Unidirectional</div>
-            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input style="margin-right: 5px;" type="radio" name="optradio">Bidirectional</div>
-            <div style="margin-top:7px;" class="col-md-4 radio-inline"><input style="margin-right: 5px;" type="radio" name="optradio">Circular</div>
+              <div style="margin-top:7px;" class="col-md-4 radio-inline">
+                <input [(ngModel)]="currentLine.routeType" value="UNIDIRECTIONAL" style="margin-right: 5px;" type="radio"
+                  name="optradio">Unidirectional
+              </div>
+              <div style="margin-top:7px;" class="col-md-4 radio-inline">
+                <input [(ngModel)]="currentLine.routeType" value="BIDIRECTIONAL"style="margin-right: 5px;" type="radio"
+                  name="optradio">Bidirectional
+              </div>
+              <div style="margin-top:7px;" class="col-md-4 radio-inline">
+                <input [(ngModel)]="currentLine.routeType" value="CIRCULAR" style="margin-right: 5px;" type="radio"
+                  name="optradio">Circular
+                </div>
             </div>
           </div>
         </div>
-        
-        
       </div>
       <div class=" row">
         <div class=" col-md-6 pr-md-1">
           <div class=" form-group">
             <label> Color(hex) </label>
-            <input
-              class=" form-control"
-              name="currentLine.color"
-              placeholder="#111111"
-              [(ngModel)]="currentLine.color"
-            />
+            <input class=" form-control" name="currentLine.color" placeholder="#111111"
+              [(ngModel)]="currentLine.color" />
           </div>
         </div>
-        
-          
-        
         <div class=" col-md-6 pl-md-1">
           <div class=" form-group">
-            <label>  </label>
-            <div class="colorContainer" [ngStyle]="{'background-color': hexaColor}">
-            <div class="textInsideColorContainer">{{hexaColor}}</div>
-            </div><!-- {hexaColor} -->
+            <label> </label>
+            <div class="colorContainer" [ngStyle]="{'background-color': currentLine.color}">
+            </div>
           </div>
         </div>
       </div>
-    
+
       <div class=" row">
         <div class=" col-md-4 pr-md-1">
-          <div class=" form-group " name = "forgroupCityName"  >
-            <label name = "LabelcityName" > City </label>
-            <input
-              class=" form-control"
-              placeholder="City"
-              type="text"
-              value="Lleide"
-              name = "cityName"          
-              [(ngModel)]="currentLine.city.name"
-            />
+          <div class=" form-group " name="forgroupCityName">
+            <label name="LabelcityName"> City </label>
+            <input class=" form-control" placeholder="City" type="text" value="Lleide" name="cityName"
+              [(ngModel)]="currentLine.city.name" />
           </div>
         </div>
         <div class=" col-md-4 px-md-1">
           <div class=" form-group">
             <label> Country </label>
-            <input
-              class=" form-control"
-              placeholder="Country"
-              type="text"
-              value="Catalunye"
-              name="country"          
-              [(ngModel)]="currentLine.city.country"
-            />
+            <input class=" form-control" placeholder="Country" type="text" value="Catalunye" name="country"
+              [(ngModel)]="currentLine.city.country" />
           </div>
         </div>
         <div class=" col-md-4 pl-md-1">
           <div class=" form-group">
             <label> Postal Code </label>
-            <input
-              class=" form-control"
-              placeholder="ZIP Code"
-              type="number"
-              name="postalCode"
-              [(ngModel)]="currentLine.city.postalCode"
-            />
+            <input class=" form-control" placeholder="ZIP Code" type="number" name="postalCode"
+              [(ngModel)]="currentLine.city.postalCode" />
           </div>
         </div>
       </div>
 
       <div cdkDropList (cdkDropListDropped)="dropPoint($event)" class=" row">
-          
+
         <div class=" col-md-6">
           <div class=" form-group">
             <label> Add stations
-              
+
             </label>
-            <button style="margin-left: 10px;"value="add" (click)="addStation()">
-               <i class="fa fa-plus"></i>
+            <button style="margin-left: 10px;" class="btn btn-sm btn-success" value="add" (click)="addStation()">
+              <i class="fa fa-plus"></i>
             </button>
             <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
-              
-            <div class=" example-box" *ngFor="let item of currentLine.stops; let i = index" id="pointsContainer" #pointsContainer cdkDrag>
-                <div  style="widows: 100%;"class=" row">
-                    <div class=" col-md-12">
-                      Point {{i}}
-                      <div style="float:right;float:top;">
-                        <i style="font-size: 2.23em;" class="fa fa-bars"></i>
-                      </div>
-                  </div>
-                    <div class=" col-md-3">
-                        <div class=" form-group">
-                          <label style="color:black;font-weight: bold;"> Name </label>
-                          <input
-                            style="color:black;"
-                            class=" form-control"
-                            placeholder="Name"
-                            name="name {{i}}"
-                            [(ngModel)]="item.name"
-                          
-                            (change)="refreshMapMarkers()"
-                            (keyup)="refreshMapMarkers()"
-                          /><!-- [(ngModel)]="item.latitude"-->
-                        </div>
-                      </div>
-                    <div class=" col-md-3">
-                      <div class=" form-group">
-                        <label style="color:black;"> Latitud </label>
-                        <input
-                          style="color:black;"
-                          class=" form-control"
-                          placeholder="latitude"
-                          type="number"
-                          name="latitude {{i}}"
-                          [(ngModel)]="item.location.lat"
-                        
-                          (change)="refreshMapMarkers()"
-                          (keyup)="refreshMapMarkers()"
-                        /><!-- [(ngModel)]="item.latitude"-->
-                      </div>
+
+              <div class=" example-box" *ngFor="let item of currentLine.stops; let i = index" id="pointsContainer"
+                #pointsContainer cdkDrag>
+                <div style="widows: 100%;" class=" row">
+                  <div class=" col-md-12">
+                    Point {{i}}
+                    <div style="float:right;float:top;">
+                      <i style="font-size: 2.23em;" class="fa fa-bars"></i>
                     </div>
-                    <div class=" col-md-3">
-                        <div class=" form-group">
-                          <label style="color:black;"> Longitud </label>
-                          <input
-                            style="color:black;"
-                            class=" form-control"
-                            placeholder="longitude"
-                            name="item {{i}}"
-                            [(ngModel)]="item.location.long"
-                            (change)="refreshMapMarkers()"
-                            (keyup)="refreshMapMarkers()"
-                            type="number"
-                          />
-                        </div>
-                      </div>
-                      
-                      <!--<div class=" col-md-3">
-                        <div class=" form-group">
-                          <label style="color:black;">  </label>
-                          <div style="float:right; margin-bottom: 0%;">
-                            <button value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
-                          </div>
-                        </div>
-                      </div>-->
-                      <div class=" col-md-12">
-                        <div style = "float:right">
-                          <button value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
-                        </div>
-                      </div>
-                      
-    
-                 
-                 </div>
+                  </div>
+                  <div class=" col-12">
+                    <div class=" form-group">
+                      <label style="color:black;font-weight: bold;"> Name </label>
+                      <input style="color:black;" class=" form-control" placeholder="Name" name="name {{i}}"
+                        [(ngModel)]="item.name" (change)="refreshMapMarkers()" (keyup)="refreshMapMarkers()" />
+                    </div>
+                  </div>
+                  <div class=" col-6">
+                    <div class=" form-group">
+                      <label style="color:black;"> Latitud </label>
+                      <input style="color:black;" class=" form-control" placeholder="latitude" type="number"
+                        name="latitude {{i}}" [(ngModel)]="item.location.lat" (change)="refreshMapMarkers()"
+                        (keyup)="refreshMapMarkers()" /><!-- [(ngModel)]="item.latitude"-->
+                    </div>
+                  </div>
+                  <div class=" col-6">
+                    <div class=" form-group">
+                      <label style="color:black;"> Longitud </label>
+                      <input style="color:black;" class=" form-control" placeholder="longitude" name="item {{i}}"
+                        [(ngModel)]="item.location.lng" (change)="refreshMapMarkers()" (keyup)="refreshMapMarkers()"
+                        type="number" />
+                    </div>
+                  </div>
+
+                  <div class=" col-md-12">
+                    <div style="float:right">
+                      <button class="btn btn-sm btn-warning"value="Delete" (click)="deletStation(i)"><i class="fa fa-trash"></i></button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
             </div>
           </div>
-          </div>
         </div>
-        <div class="col-md-6">   
+        <div class="col-md-6">
           <div class=" card card-plain">
             <!-- <div class=" card-header">Google Maps</div>-->
-            <div class=" card-body"><div #fleetMap class=" map" id="fleetMap"></div></div>
-          </div>  
+            <div class=" card-body">
+              <div #fleetMap class=" map" id="fleetMap"></div>
+            </div>
+          </div>
         </div>
       </div>
     </form>
@@ -198,5 +144,3 @@
     <button class=" btn btn-fill btn-danger" type="submit">Save</button>
   </div>
 </div>
-
-

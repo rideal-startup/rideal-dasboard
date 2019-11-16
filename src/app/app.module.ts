@@ -1,3 +1,4 @@
+import { LineService } from './services/lineservice.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +39,7 @@ import { AuthenticationBasicService } from './services/authentication-basic.serv
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [AuthenticationBasicService],
+  providers: [AuthenticationBasicService, LineService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

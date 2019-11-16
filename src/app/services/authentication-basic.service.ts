@@ -15,16 +15,15 @@ export class AuthenticationBasicService {
     const authorization = this.generateAuthorization(username, password);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Authorization': authorization
+        Authorization: authorization
       })
     };
-    //return this.http.get(`${environment.API_BASE_URL}/identity`, httpOptions).pipe(
+
     return this.http.get(`${environment.API_BASE_URL}/identity`, httpOptions).pipe(
       map((data: User) => {
-        const user: User = data;
-        user.authorization = authorization;
-        user.password = password;
-        return user;
+        data.authorization = authorization;
+        data.password = password;
+        return data;
       })
     );
   }
@@ -48,5 +47,4 @@ export class AuthenticationBasicService {
   getCurrentUser(): User {
     return JSON.parse(localStorage.getItem('currentUser')) as User;
   }
-
 }

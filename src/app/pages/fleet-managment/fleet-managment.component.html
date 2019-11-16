@@ -1,36 +1,32 @@
-
-  <div class=" content">
-
-        <div class="row">
-            <div style="float:left; margin-left: 15px;">
-              <div ngbDropdown class="d-inline-block" >
-                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                  Select Lines
-                  <i style="margin-left: 5px;" class="fa fa-chevron-down"></i>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" (click)="loadLine('hola')">
-                  <button ngbDropdownItem>L1</button>
-                  <button ngbDropdownItem>l12</button>
-                  <button ngbDropdownItem>l15</button>
-                  <button ngbDropdownItem>l13</button>
-                </div>
-              </div>
-            </div>
-
-          <div style="float:left; margin-left: 10px;" class="createLineButton d-inline-block" >
-            <button class="btn btn-outline-primary" (click)="setCreateLineMode()">
-              Create new line 
-              <i style="margin-left: 5px;" class="fa fa-plus"></i>
-              
-            </button>
-          </div>
-
-          </div>
-
-    <div class="row" *ngIf="displayInfo == true">
-      <div class=" col-md-12">
-        <app-line-form [currentLine]="lineSelected"></app-line-form>
+<div class=" content">
+  <div class="row">
+    <div style="float:left; margin-left: 15px;">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary dropdown" id="dropdownBasic1" ngbDropdownToggle>
+          Select Lines
+          <i style="margin-left: 5px;" class="fa fa-chevron-down"></i>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-area-lines">
+          <div *ngIf="loadingLines"><i class="loader w-100 fas fa-spinner fa-spin"></i></div>
+          <button *ngFor="let l of lines" (click)="selectLine(l)" ngbDropdownItem>{{ l.name }}</button>
+        </div>
       </div>
     </div>
-   
 
+    <div style="float:left; margin-left: 10px;" class="createLineButton d-inline-block">
+      <button class="btn btn-outline-primary" (click)="setCreateLineMode()">
+        Create new line
+        <i style="margin-left: 5px;" class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class=" col-md-12">
+      <div *ngIf="loadingLines" class="larger-loader">
+        <i class="fas fa-spinner fa-spin"></i>
+      </div>
+      <app-line-form *ngIf="!loadingLines" [currentLine]="selectedLine"></app-line-form>
+    </div>
+  </div>
+</div>
