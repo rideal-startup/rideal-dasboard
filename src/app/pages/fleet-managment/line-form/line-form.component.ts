@@ -4,6 +4,9 @@ import { FormControl, SelectMultipleControlValueAccessor } from '@angular/forms'
 
 import { DndDropEvent } from 'ngx-drag-drop';
 import { ThemeService } from 'src/app/services/theme.service';
+import { Line } from 'src/app/domain/line';
+import { Stop } from 'src/app/domain/stop';
+import { Coordinates } from 'src/app/domain/coordinates';
 
 declare const google: any;
 
@@ -14,7 +17,8 @@ declare const google: any;
   styleUrls: ['./line-form.component.scss']
 })
 export class LineFormComponent implements OnInit {
-  @Input('currentLine') currentLine: Object;
+
+  @Input('currentLine') currentLine: Line;
 
   hexaColor: string = "#BC9166";
 
@@ -24,10 +28,7 @@ export class LineFormComponent implements OnInit {
   map: any;
   currentId = 2;
   
-  linePoints: mapPoint[] = [
-    new mapPoint(1, "Los Santos", 41.689426, 20.722586, null),
-    new mapPoint(2, "S.Andreas", 30.689426, 10.422586, null)
-  ];
+
 
   isCircular: boolean = false;
 
@@ -55,7 +56,7 @@ export class LineFormComponent implements OnInit {
   public addStation() {
 
     this.currentId += 1;
-    this.linePoints.unshift(new mapPoint(this.currentId, "", null, null,
+    this.currentLine.stops.unshift(new Stop(this.currentId.toString(), new Coordinates(null, null), null, null,
       null
     ));
     const that = this;
@@ -64,12 +65,14 @@ export class LineFormComponent implements OnInit {
   }
 
   public deletStation(index: number) {
-    if(this.linePoints[index].marker != null){this.linePoints[index].marker.setMap(null);}
-    this.linePoints.splice(index, 1);
+    if (this.currentLine.stops[index].marker != null){
+      this.currentLine.stops[index].marker.setMap(null);
+    }
+    this.currentLine.stops.splice(index, 1);
   }
 
   dropPoint(event: CdkDragDrop<mapPoint[]>) {
-    moveItemInArray(this.linePoints, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.currentLine.stops, event.previousIndex, event.currentIndex);
   }
 
   /**
@@ -281,14 +284,14 @@ export class LineFormComponent implements OnInit {
   public refreshMapMarkers() {
     console.log("Refresh!");
 
-    this.linePoints.forEach(item => {
+    this.currentLine.stops.forEach(item => {
       //item.marker.setMap(null);
       if (item.marker != null) { item.marker.setMap(null); }
       item.marker = null;
-      console.log(item.id + "item.latitude: " + item.lat);
-      console.log(item.id + "item.longitude: " + item.lng);
+      console.log(item.name + "item.latitude: " + item.location.lat);
+      console.log(item.name + "item.longitude: " + item.location.long);
       item.marker = new google.maps.Marker({
-        position: new google.maps.LatLng(item.lat, item.lng),
+        position: new google.maps.LatLng(item.location.lat, item.location.long),
         title: item.name
       });
 

@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.redirectToDashboard();//remove
     this.authenticationService.login(this.username, this.password)
       .subscribe(
         user => {

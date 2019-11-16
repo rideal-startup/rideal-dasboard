@@ -12,7 +12,9 @@
               class=" form-control"
               placeholder="Company"
               type="text"
-              value="Creative Code Inc."
+              value="Creative Code Inc."  
+              name = "name"          
+              [(ngModel)]="currentLine.name"
             />
           </div>
         </div>
@@ -35,9 +37,9 @@
             <label> Color(hex) </label>
             <input
               class=" form-control"
-              name="colorhex"
+              name="currentLine.color"
               placeholder="#111111"
-              [(ngModel)]="hexaColor"
+              [(ngModel)]="currentLine.color"
             />
           </div>
         </div>
@@ -56,13 +58,15 @@
     
       <div class=" row">
         <div class=" col-md-4 pr-md-1">
-          <div class=" form-group">
-            <label> City </label>
+          <div class=" form-group " name = "forgroupCityName"  >
+            <label name = "LabelcityName" > City </label>
             <input
               class=" form-control"
               placeholder="City"
               type="text"
               value="Lleide"
+              name = "cityName"          
+              [(ngModel)]="currentLine.city.name"
             />
           </div>
         </div>
@@ -74,6 +78,8 @@
               placeholder="Country"
               type="text"
               value="Catalunye"
+              name="country"          
+              [(ngModel)]="currentLine.city.country"
             />
           </div>
         </div>
@@ -84,6 +90,8 @@
               class=" form-control"
               placeholder="ZIP Code"
               type="number"
+              name="postalCode"
+              [(ngModel)]="currentLine.city.postalCode"
             />
           </div>
         </div>
@@ -101,10 +109,10 @@
             </button>
             <div style="margin-top:5px;" cdkDropList class="example-list" (cdkDropListDropped)="dropPoint($event)">
               
-            <div class=" example-box" *ngFor="let item of linePoints; let i = index" id="pointsContainer" #pointsContainer cdkDrag>
+            <div class=" example-box" *ngFor="let item of currentLine.stops; let i = index" id="pointsContainer" #pointsContainer cdkDrag>
                 <div  style="widows: 100%;"class=" row">
                     <div class=" col-md-12">
-                      Point {{i}}, id: {{item.id}}
+                      Point {{i}}
                       <div style="float:right;float:top;">
                         <i style="font-size: 2.23em;" class="fa fa-bars"></i>
                       </div>
@@ -133,7 +141,7 @@
                           placeholder="latitude"
                           type="number"
                           name="latitude {{i}}"
-                          [(ngModel)]="item.lat"
+                          [(ngModel)]="item.location.lat"
                         
                           (change)="refreshMapMarkers()"
                           (keyup)="refreshMapMarkers()"
@@ -147,8 +155,8 @@
                             style="color:black;"
                             class=" form-control"
                             placeholder="longitude"
-                            name="longitude {{i}}"
-                            [(ngModel)]="item.lng"
+                            name="item {{i}}"
+                            [(ngModel)]="item.location.long"
                             (change)="refreshMapMarkers()"
                             (keyup)="refreshMapMarkers()"
                             type="number"
