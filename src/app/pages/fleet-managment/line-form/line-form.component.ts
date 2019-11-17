@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, AfterViewInit, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { ThemeService } from 'src/app/services/theme.service';
 import { Line } from 'src/app/domain/line';
 import { Stop } from 'src/app/domain/stop';
 import { Coordinates } from 'src/app/domain/coordinates';
+import { City } from 'src/app/domain/city';
 
 declare const google: any;
 
@@ -13,11 +14,13 @@ declare const google: any;
   templateUrl: './line-form.component.html',
   styleUrls: ['./line-form.component.scss']
 })
-export class LineFormComponent implements OnInit {
+export class LineFormComponent implements OnInit, AfterViewInit, OnChanges {
 
-  @Input('currentLine') public currentLine: Line;
+  @Input() public currentLine: Line;
+  @Input() public cities: City[];
+  @Input() public createMode: boolean;
 
-  hexaColor = '#BC9166';
+  @Output() public submitLine = new EventEmitter<void>();
 
   sidebarColor: any = 'blue';
 
@@ -28,35 +31,37 @@ export class LineFormComponent implements OnInit {
   isCircular = false;
 
   constructor(
-    private themeService: ThemeService
-  ) {
+    private themeService: ThemeService) {
     themeService.sidebarColor.subscribe(sidebarColor => {
       this.sidebarColor = sidebarColor;
       this.changeSidebarColor(sidebarColor);
     });
+
     themeService.mainPanelColor.subscribe(mainPanelColor => {
       this.changeDashboardColor(mainPanelColor);
-    }
-      );
-
-
+    });
   }
 
   ngOnInit() { }
 
   ngAfterViewInit() {
-    this.mapSetUp();
+    if (this.currentLine.stops.length > 0) {
+      this.mapSetUp(this.currentLine.stops[0].location);
+    } else {
+      this.mapSetUp({lat: 0, lng: 0} as Coordinates);
+    }
+    this.refreshMapMarkers();
   }
 
   public addStation() {
-
     this.currentId += 1;
-    this.currentLine.stops.unshift(new Stop(this.currentId.toString(), new Coordinates(null, null), null, null,
-      null
+    this.currentLine.stops.push(
+      new Stop(this.currentId.toString(),
+               new Coordinates(null, null),
+               null, null, null
     ));
-    const that = this;
-    // this.linePoints[this.linePoints.length - 1].marker.setMap(this.map);
-    setTimeout(function() { that.changeSidebarColor(that.sidebarColor); }, 50);
+
+    setTimeout(() => { this.changeSidebarColor(this.sidebarColor); }, 50);
   }
 
   public deletStation(index: number) {
@@ -66,7 +71,15 @@ export class LineFormComponent implements OnInit {
     this.currentLine.stops.splice(index, 1);
   }
 
-  dropPoint(event: CdkDragDrop<mapPoint[]>) {
+  public selectCity(city: City) {
+    this.currentLine.city = city;
+  }
+
+  public submit() {
+    this.submitLine.emit();
+  }
+
+  public dropPoint(event: CdkDragDrop<mapPoint[]>) {
     moveItemInArray(this.currentLine.stops, event.previousIndex, event.currentIndex);
   }
 
@@ -74,12 +87,26 @@ export class LineFormComponent implements OnInit {
    * MAP ZONE
    *
    */
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!changes.currentLine.firstChange) {
+      this.updateMap();
+      this.refreshMapMarkers();
+    }
+  }
 
-  mapSetUp() {
+  public updateMap() {
+    if (this.currentLine.stops.length > 0) {
+      this.mapSetUp(this.currentLine.stops[0].location);
+    } else {
+      this.mapSetUp({lat: 0, lng: 0} as Coordinates);
+    }
+  }
 
-    const myLatlng = new google.maps.LatLng(41.689426, 20.722586);
+  mapSetUp(location: Coordinates) {
+
+    const myLatlng = new google.maps.LatLng(location.lat, location.lng);
     const mapOptions = {
-      zoom: 13,
+      zoom: 14,
       center: myLatlng,
       scrollwheel: false, // we disable de scroll over the map, it is a really annoing when you scroll through page
       styles: [{
@@ -272,35 +299,29 @@ export class LineFormComponent implements OnInit {
     };
 
     this.map = new google.maps.Map(document.getElementById('fleetMap'), mapOptions);
-
-    this.refreshMapMarkers();
   }
 
   public refreshMapMarkers() {
-    console.log('Refresh!');
-
+    if (this.currentLine.stops.length === 1) {
+      this.updateMap();
+    }
     this.currentLine.stops.forEach(item => {
       // item.marker.setMap(null);
       if (item.marker != null) { item.marker.setMap(null); }
       item.marker = null;
-      console.log(item.name + 'item.latitude: ' + item.location.lat);
-      console.log(item.name + 'item.longitude: ' + item.location.lng);
       item.marker = new google.maps.Marker({
         position: new google.maps.LatLng(item.location.lat, item.location.lng),
         title: item.name
       });
-
       item.marker.setMap(this.map);
     });
   }
 
   public setCreateLineMode() {
-    console.log('setCreateLineMode');
     this.fullMapMode = true;
   }
 
   public loadLine(id: string) {
-    console.log('setCreateLineMode');
     this.fullMapMode = false;
   }
 

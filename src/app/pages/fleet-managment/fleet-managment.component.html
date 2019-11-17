@@ -26,7 +26,18 @@
       <div *ngIf="loadingLines" class="larger-loader">
         <i class="fas fa-spinner fa-spin"></i>
       </div>
-      <app-line-form *ngIf="!loadingLines" [currentLine]="selectedLine"></app-line-form>
+      <app-line-form *ngIf="!loadingLines"
+        [currentLine]="selectedLine"
+        [createMode]="createMode"
+        [cities]="cities"
+        (submitLine)="submit()"></app-line-form>
     </div>
   </div>
+</div>
+
+<div *ngIf="message" class="alert"
+  [ngClass]="{'alert-danger': message?.type === 'ERROR',
+              'alert-success': message?.type === 'SUCCESS'}"
+  role="alert">
+  {{ message.msg }}
 </div>

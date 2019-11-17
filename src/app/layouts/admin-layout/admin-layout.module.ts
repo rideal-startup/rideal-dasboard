@@ -23,6 +23,7 @@ import { DndModule } from 'ngx-drag-drop';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { QRCodeModule } from 'angularx-qrcode';
 import { AuthenticationBasicService } from 'src/app/services/authentication-basic.service';
+import { DurationPickerModule } from 'ngx-duration-picker';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { AuthenticationBasicService } from 'src/app/services/authentication-basi
     NgbModule,
     ReactiveFormsModule,
     QRCodeModule,
+    DurationPickerModule
   ],
   declarations: [
     DashboardComponent,

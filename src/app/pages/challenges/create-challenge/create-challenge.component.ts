@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { CityService } from './../../../services/city.service';
+import { City } from './../../../domain/city';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Challenge, UnitEnum } from '../../../domain/challenge';
 
 @Component({
   selector: 'app-create-challenge',
@@ -9,8 +12,15 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreateChallengeComponent implements OnInit {
 
-  public challengeForm: FormGroup;
+  @Output() public submitChallenge = new EventEmitter<Challenge>();
 
+  public cities: City[] = [];
+  public city: City;
+
+  public challengeForm: FormGroup;
+  public duration: number;
+
+  public unit: UnitEnum = UnitEnum.KM;
   public gold = true;
   public silver = false;
   public bronze = false;
@@ -19,18 +29,48 @@ export class CreateChallengeComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private toast: ToastrService) {
+    private toast: ToastrService,
+    private cityService: CityService) {
     this.challengeForm = fb.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
       description: ['', Validators.required],
+      goal: ['', Validators.compose([Validators.required])],
+      prizeLink: ['', Validators.required],
+      prizeName: ['', Validators.required]
     });
   }
 
   ngOnInit() {
+    this.cityService.findAll().subscribe(r => this.cities = r);
+  }
+
+  private getDifficulty() {
+    if (this.gold) {
+      return 'GOLD';
+    } else if (this.silver) {
+      return 'SILVER';
+    } else {
+      return 'BRONZE';
+    }
   }
 
   onSubmit() {
-    console.warn(this.challengeForm.value);
+    const formValue = this.challengeForm.value;
+    const challenge = {
+      name: formValue.name,
+      description: formValue.description,
+      duration: this.duration,
+      prize: { name: formValue.prizeName, link: formValue.prizeLink },
+      city: this.city,
+      goal: formValue.goal,
+      unit: this.unit,
+      difficulty: this.getDifficulty()
+    } as Challenge;
+    this.submitChallenge.emit(challenge);
+  }
+
+  changeDuration(d: number) {
+    this.duration = d;
   }
 
   handleFileInput(files: FileList) {

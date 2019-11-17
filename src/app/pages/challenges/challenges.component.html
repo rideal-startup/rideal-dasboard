@@ -1,4 +1,8 @@
 <div class="content">
-  <app-list-challenges></app-list-challenges>
-  <app-create-challenge></app-create-challenge>
+  <app-list-challenges
+    [challenges]="challenges"
+    (clickDelete)="delete($event)">
+  </app-list-challenges>
+  <app-create-challenge
+    (submitChallenge)="createChallenge($event)"></app-create-challenge>
 </div>
