@@ -1,24 +1,26 @@
 <h2>Public challenges</h2>
 <div class="row">
-  <div class="col-4" *ngFor="let c of challenges">
+  <div class="col-4" *ngFor="let c of challenges; let i = index">
     <div class="card">
       <i class="fas fa-award prize-difficulty {{ c.difficulty }}"></i>
       <div class="card-body">
         <h4 class="card-title">{{ c.name }}</h4>
+        <p>Goal: {{c.goal}} {{c.unit}}</p>
+        <p>Duration: {{ challengesDuration[i] }}</p>
         <p class="card-text">{{ c.description }}</p>
         <hr>
         <div class="row align-items-center">
           <div class="col-9">
-            <p>Price reference: <code>{{ c.prize }}</code></p>
+            <p>Price reference: <code>{{ c.prize.link }}</code></p>
           </div>
           <div class="col">
             <div class="qr-wrapper pt-2 pb-2">
-              <qrcode [qrdata]="c.prize" [usesvg]="true" [size]="512"></qrcode>
+              <qrcode [qrdata]="c.prize.link" [usesvg]="true" [size]="512"></qrcode>
             </div>
           </div>
         </div>
         <div class="text-right">
-          <a href="#" class="btn btn-sm btn-warning challenge-btn">Delete</a>
+          <button (click)="delete(c)" class="btn btn-sm btn-warning challenge-btn">Delete</button>
           <a href="#" class="btn btn-sm btn-secondary challenge-btn">View more</a>
         </div>
       </div>

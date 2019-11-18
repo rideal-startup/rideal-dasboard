@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
+import { FleetManagmentComponent } from '../pages/fleet-managment/fleet-managment.component';
+import { LineFormComponent } from '../pages/fleet-managment/line-form/line-form.component';
 
 import { QRCodeModule } from 'angularx-qrcode';
 
@@ -28,7 +30,7 @@ import { QRCodeModule } from 'angularx-qrcode';
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
   ]
 })
 export class ComponentsModule {}

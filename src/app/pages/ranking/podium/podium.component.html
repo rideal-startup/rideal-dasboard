@@ -1,0 +1,23 @@
+<div id="wrapper">
+  <div id="container">
+
+    <h2>Rank Podium</h2>
+
+    <ol class="podium-rank">
+      <li *ngFor="let w of winners.slice(0, 3); let i = index">
+        <a href="#">
+          <div class="container">
+            <div class="image">
+              <i class="fas fa-award" [ngStyle]="{'color': COLORS[i]}"></i>
+            </div>
+            <div class="cont">
+              <h3>{{ w.username }}</h3>
+              <h4>{{ w.points }}</h4>
+              <p>{{ w.prize }}</p>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ol>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="content">
+  <div class=" card">
+    <div class=" card-header">
+      <div class="row justify-items-center">
+        <div class="col">
+          <h3 class="card-title"><i class="fas fa-trophy mr-2"></i> Ranking</h3>
+        </div>
+        <div class="col text-right pr-4">
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label (click)="filterRanking()" *ngFor="let c of cities" class="btn btn-sm btn-warning btn-simple" (click)="selected = c"
+              [ngClass]="{'active':selected === c}">
+              <input checked="checked" name="options" type="radio" />
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                {{ c }}
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-single-02"> </i>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class=" card-body">
+      <div class=" table-responsive">
+        <table class=" table tablesorter" id="">
+          <thead class=" text-primary">
+            <tr>
+              <th>Name</th>
+              <th>City</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let u of filteredRanking">
+              <td>{{ u.name }}</td>
+              <td>{{ u.city }}</td>
+              <td>{{ u.points }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="podium-wrapper">
+    <app-podium></app-podium>
+  </div>
+</div>

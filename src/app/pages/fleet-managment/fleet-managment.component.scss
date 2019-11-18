@@ -1,0 +1,37 @@
+.createLineButton {
+  margin-left: 10px;
+  margin-right: 10px;
+  //background-color: rgba($color: #8447d49a, $alpha: 1.0);
+}
+
+.createLineButton :hover {
+  background-color: rgba($color: #ce2b259a, $alpha: 1.0);
+}
+
+.dropdown-area-lines {
+  max-height: 15em;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.loader {
+  font-size: 2em;
+  text-align: center;
+  padding: 1em;
+}
+
+.larger-loader {
+  font-size: 4em;
+  padding: 2em;
+  margin-top: 10em;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.alert {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  width: 30%;
+}

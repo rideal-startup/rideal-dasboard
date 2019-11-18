@@ -5,23 +5,21 @@
       Uploaded file: {{ file?.name }}
     </span>
     <label for="file" class="btn btn-warning">Upload multiple</label>
-    <input type="file"
-           id="file"
-           style="visibility:hidden;"
-           accept="json" class="form-control"
-           (change)="handleFileInput($event.target.files)">
+    <input type="file" id="file" style="visibility:hidden;" accept="json" class="form-control"
+      (change)="handleFileInput($event.target.files)">
   </div>
 </div>
 <div class="card">
   <div class="card-body">
+    <h3>Challenge</h3>
     <form [formGroup]="challengeForm" (ngSubmit)=onSubmit()>
-      <div class="form-row">
+      <div class="form-row align-items-center">
         <div class=" col-9 form-group">
           <label>Name</label>
           <input class=" form-control" formControlName="name" placeholder="Cool name">
         </div>
-        <div class=" col-3 form-group">
-          <label>Difficulty</label>
+        <div class="col-3 form-group">
+          <label>Difficulty</label><br>
           <div class=" btn-group btn-group-toggle" data-toggle="buttons">
             <label class=" btn btn-sm btn-warning btn-simple" (click)="gold=true;silver=false;bronze=false"
               [ngClass]="{'active':gold}">
@@ -59,12 +57,87 @@
           </div>
         </div>
       </div>
+      <div class="form-row align-items-center mb-4">
+        <div class="col-6 form-group" style="margin: auto">
+          <label name="mr-4"> City </label>
+          <div ngbDropdown class="ml-4 d-inline-block">
+            <button class="btn btn-sm btn-outline-primary dropdown" id="dropdownBasic1" ngbDropdownToggle>
+              Pick a city
+              <i style="margin-left: 5px;" class="fa fa-chevron-down"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-area-lines">
+              <button *ngFor="let c of cities" (click)="city = c" ngbDropdownItem>{{ c.name }} -
+                {{ c.country }}</button>
+            </div>
+            <b class="ml-4">{{ city?.name }}-{{ city?.country }}</b>
+          </div>
+        </div>
+        <div class="col-3 form-group">
+          <label>Goal</label>
+          <input class=" form-control" formControlName="goal" placeholder="50" type="number">
+        </div>
+        <div class="col-3 form-group">
+          <label class="w-100">Unit</label>
+
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="unit = 'KM'"
+              [ngClass]="{'active': unit === 'KM'}">
+              <input checked="checked" name="options" type="radio" />
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                Km
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-single-02"> </i>
+              </span>
+            </label>
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="unit = 'TIMES'"
+              [ngClass]="{'active':unit === 'TIMES'}">
+              <input class=" d-none d-sm-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                Times
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-gift-2"> </i>
+              </span>
+            </label>
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="unit = 'MIN'"
+              [ngClass]="{'active': unit === 'MIN'}">
+              <input class=" d-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                Minutes
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-tap-02"> </i>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Duration</label>
+        <ngx-duration-picker
+          [options]="{ showSeconds: false, showYears: false, showPreview: false, customOutputFormat: 'seconds' }"
+          (customOutput)="changeDuration($event)"></ngx-duration-picker>
+      </div>
+
       <div class="form-group">
         <label>Description</label>
         <textarea formControlName="description" class=" form-control" placeholder="Here can be your description"
           rows="4"></textarea>
       </div>
-
+      <h3>Prize</h3>
+      <div class="form-row">
+        <div class=" col-6 form-group">
+          <label>Prize Description</label>
+          <input class=" form-control" formControlName="prizeName" placeholder="Users' reward">
+        </div>
+        <div class=" col-6 form-group">
+          <label>Prize Reference</label>
+          <input class=" form-control" formControlName="prizeLink" placeholder="Way to obtain the prize">
+        </div>
+      </div>
       <button class="btn btn-warning" type="submit" [disabled]="!challengeForm.valid">Submit</button>
     </form>
   </div>

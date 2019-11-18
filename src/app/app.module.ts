@@ -1,3 +1,4 @@
+import { LineService } from './services/lineservice.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { ChallengesComponent } from './pages/challenges/challenges.component';
+import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.component';
+import { AuthenticationBasicService } from './services/authentication-basic.service';
+
 
 @NgModule({
   imports: [
@@ -34,7 +39,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [],
+  providers: [AuthenticationBasicService, LineService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

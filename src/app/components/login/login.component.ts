@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
-import { AuthService } from './../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationBasicService } from 'src/app/services/authentication-basic.service';
 
 @Component({
   selector: 'app-login',
@@ -8,20 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public email: string;
+  public username: string;
   public password: string;
+  public loginError = false;
 
   constructor(
-    private authService: AuthService,
-    private router: Router) { }
+    private authenticationService: AuthenticationBasicService,
+    private router: Router) {}
 
   ngOnInit() {
   }
 
-  redirectToDashboard() {
-    // TODO: Authenticate
-    console.log(this.email, this.password);
-    this.router.navigateByUrl('/admin/dashboard');
+  onSubmit() {
+    this.authenticationService.login(this.username, this.password)
+      .subscribe(user => {
+        this.authenticationService.storeCurrentUser(user);
+        this.redirectToDashboard();
+      }, error => {
+        console.log(error);
+        this.loginError = true;
+      });
   }
 
+  redirectToDashboard() {
+    this.router.navigateByUrl('/admin/dashboard');
+  }
 }
