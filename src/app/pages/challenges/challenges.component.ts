@@ -18,12 +18,11 @@ export class ChallengesComponent implements OnInit {
 
   ngOnInit() {
     this.challengeService.findAll().subscribe(
-      res => this.challenges = res
+      res => { this.challenges = res;  }
     );
   }
 
   public createChallenge(challenge: Challenge) {
-    console.log(challenge);
     this.challengeService.create(challenge).subscribe(
       res => this.challenges.push(res),
       error => {

@@ -52,7 +52,9 @@ export class ListChallengesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.challengesDuration = changes.challenges.currentValue.map(this.computeDuration);
+    if (!changes.challenges.firstChange) {
+      this.challengesDuration = this.challenges.map(this.computeDuration);
+    }
   }
 
 }
