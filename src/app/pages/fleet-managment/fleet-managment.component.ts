@@ -75,7 +75,7 @@ export class FleetManagmentComponent implements OnInit {
   public loadLine(id: string) {
     // TODO: lineSelected = HTTTP GET
     console.log('setCreateLineMode');
-    this.lineSelected = this.filled_lineSelected;
+    this.lineSelected = this.empty_lineSelected;
     this.displayInfo = true;
   }
 
