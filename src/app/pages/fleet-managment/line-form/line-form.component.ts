@@ -21,6 +21,7 @@ export class LineFormComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() public createMode: boolean;
 
   @Output() public submitLine = new EventEmitter<void>();
+  @Output() public deleteLine = new EventEmitter<void>();
 
   sidebarColor: any = 'blue';
 
@@ -77,6 +78,9 @@ export class LineFormComponent implements OnInit, AfterViewInit, OnChanges {
 
   public submit() {
     this.submitLine.emit();
+  }
+  public delete() {
+    this.deleteLine.emit();
   }
 
   public dropPoint(event: CdkDragDrop<mapPoint[]>) {

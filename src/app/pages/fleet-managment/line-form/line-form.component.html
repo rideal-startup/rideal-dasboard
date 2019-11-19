@@ -1,35 +1,58 @@
 <div class=" card">
   <div class=" card-header">
-    <h4 class=" title">Edit line</h4>
+    <h4 class=" title">{{ createMode ? "Create": "Edit" }} Line</h4>
   </div>
   <div class=" card-body">
     <form>
       <div class=" row">
-        <div class=" col-md-5 pr-md-1">
+        <div class=" col-md-6 pr-md-1">
           <div class=" form-group">
             <label> Line Name </label>
             <input class=" form-control" placeholder="Line name" type="text" value="Creative Code Inc." name="name"
               [(ngModel)]="currentLine.name" />
           </div>
         </div>
-        <div class=" col-md-7 pr-md-1">
-          <div class=" form-group">
-            <label> Line Type </label>
-            <div class="row">
-              <div style="margin-top:7px;" class="col-md-4 radio-inline">
-                <input [(ngModel)]="currentLine.routeType" value="UNIDIRECTIONAL" style="margin-right: 5px;"
-                  type="radio" name="optradio">Unidirectional
+        <div class=" col-md-6 pr-md-1">
+
+            <div class="form-group">
+                <label> Line Type </label><br>
+                <div class=" btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.routeType='CIRCULAR';"
+                    [ngClass]="{'active':currentLine.routeType=='CIRCULAR'}">
+                    <input class=" d-none" name="options" type="radio" />
+      
+                    <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                      Circular
+                    </span>
+                    <span class=" d-block d-sm-none">
+                      <i class=" tim-icons icon-tap-02"> </i>
+                    </span>
+                  </label>
+                  <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.routeType='UNIDIRECTIONAL'"
+                    [ngClass]="{'active':currentLine.routeType=='UNIDIRECTIONAL'}">
+                    <input class=" d-none d-sm-none" name="options" type="radio" />
+      
+                    <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                        Unidirectional
+                    </span>
+                    <span class=" d-block d-sm-none">
+                      <i class=" tim-icons icon-gift-2"> </i>
+                    </span>
+                  </label>
+                  <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.routeType='BIDIRECTIONAL'"
+                    [ngClass]="{'active':currentLine.routeType=='BIDIRECTIONAL'}">
+                    <input class=" d-none" name="options" type="radio" />
+      
+                    <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                        Bidirectional
+                    </span>
+                    <span class=" d-block d-sm-none">
+                      <i class=" tim-icons icon-tap-02"> </i>
+                    </span>
+                  </label>
+                </div>
               </div>
-              <div style="margin-top:7px;" class="col-md-4 radio-inline">
-                <input [(ngModel)]="currentLine.routeType" value="BIDIRECTIONAL" style="margin-right: 5px;" type="radio"
-                  name="optradio">Bidirectional
-              </div>
-              <div style="margin-top:7px;" class="col-md-4 radio-inline">
-                <input [(ngModel)]="currentLine.routeType" value="CIRCULAR" style="margin-right: 5px;" type="radio"
-                  name="optradio">Circular
-              </div>
-            </div>
-          </div>
+              
         </div>
       </div>
       <div class=" row">
@@ -42,14 +65,72 @@
         </div>
         <div class=" col-md-6 pl-md-1">
           <div class=" form-group">
-            <label>{{currentLine.color}}</label>
+              <label>  </label>
             <div class="colorContainer" [ngStyle]="{'background-color': currentLine.color}">
             </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-3 mb-4">
+      <div class="row">
+        <div class="col-6 form-group">
+          <label>Line available</label><br>
+          <div class=" btn-group btn-group-toggle" data-toggle="buttons">
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.available=true;"
+              [ngClass]="{'active':currentLine.available}">
+              <input class=" d-none d-sm-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                Available
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-gift-2"> </i>
+              </span>
+            </label>
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.available=false;"
+              [ngClass]="{'active':!currentLine.available}">
+              <input class=" d-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                Unavailable
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-tap-02"> </i>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="col-6 form-group">
+          <label>Available on free days</label><br>
+          <div class=" btn-group btn-group-toggle" data-toggle="buttons">
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.onFreeDays=true;"
+              [ngClass]="{'active':currentLine.onFreeDays}">
+              <input class=" d-none d-sm-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                onFreeDays
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-gift-2"> </i>
+              </span>
+            </label>
+            <label class=" btn btn-sm btn-warning btn-simple" (click)="currentLine.onFreeDays=false;"
+              [ngClass]="{'active':!currentLine.onFreeDays}">
+              <input class=" d-none" name="options" type="radio" />
+
+              <span class=" d-none d-sm-block d-md-block d-lg-block d-xl-block">
+                no onFreeDays
+              </span>
+              <span class=" d-block d-sm-none">
+                <i class=" tim-icons icon-tap-02"> </i>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-6">
         <label name="LabelcityName mr-4"> City </label>
         <div ngbDropdown class="ml-4 d-inline-block">
           <button class="btn btn-sm btn-outline-primary dropdown" id="dropdownBasic1" ngbDropdownToggle>
@@ -63,6 +144,23 @@
           <b class="ml-4">{{ currentLine.city.name }}-{{ currentLine.city.country }}</b>
         </div>
       </div>
+
+      <div class="col-6">
+        <label name="LabelcityName mr-4"> Transport </label>
+        <div ngbDropdown class="ml-4 d-inline-block">
+          <button class="btn btn-sm btn-outline-primary dropdown" id="dropdownBasic1" ngbDropdownToggle>
+            <div *ngIf="currentLine.transportationMode == null" style="min-width: 150px;">Select a type <i style="margin-left: 5px;" class="fa fa-chevron-down"></i></div>
+            <div *ngIf="currentLine.transportationMode != null" style="min-width: 150px;">{{currentLine.transportationMode}} <i style="margin-left: 5px;" class="fa fa-chevron-down"></i></div>
+            
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-area-lines">
+            <button (click)="currentLine.transportationMode = 'BUS'" ngbDropdownItem> BUS</button>
+            <button (click)="currentLine.transportationMode = 'TRAIN'" ngbDropdownItem> TRAIN</button>
+            <button (click)="currentLine.transportationMode = 'METRO'" ngbDropdownItem> METRO</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
       <div cdkDropList (cdkDropListDropped)="dropPoint($event)" class=" row">
         <div class=" col-md-6">
@@ -133,5 +231,6 @@
   </div>
   <div class=" card-footer">
     <button class=" btn btn-fill btn-danger" (click)="submit()" type="submit">{{ createMode ? "Create": "Save" }}</button>
+    <button style="margin-left:10px;" *ngIf="createMode == false" class=" btn btn-fill btn-danger" (click)="delete()" type="delete">Delete</button>
   </div>
 </div>

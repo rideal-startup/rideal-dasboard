@@ -39,7 +39,6 @@ export class LineService {
 
   public create(line: Line): Observable<any> {
     const lineBody = new Line(line).toJson();
-    lineBody.company = '/companies/' + this.auth.getCurrentUser().id;
     lineBody.city = '/cities/' + line.city.id;
     return this.http.post<City>(`${environment.API_BASE_URL}/lines`,
       lineBody, this.requestOpt);

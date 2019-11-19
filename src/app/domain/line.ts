@@ -46,7 +46,7 @@ export class Line {
       color: this.color,
       routeType: this.routeType,
       city: '/cities/' + this.city.id,
-      company : '/companies/' + this.company.id,
+      company : '/companies/' +  this.company.id,
       stops: this.stops.map(s => ({ name: s.name, location: s.location, waitTime: s.waitTime, order: s.order})),
       transportationMode: this.transportationMode
     };

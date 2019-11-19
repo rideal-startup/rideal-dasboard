@@ -19,25 +19,32 @@
         <i style="margin-left: 5px;" class="fa fa-plus"></i>
       </button>
     </div>
+
+    <div *ngIf="message" class="alert"
+      [ngClass]="{'alert-danger': message?.type === 'ERROR',
+                  'alert-success': message?.type === 'SUCCESS'}"
+      role="alert">
+      {{ message.msg }}
+    </div>
   </div>
+
 
   <div class="row">
     <div class=" col-md-12">
-      <div *ngIf="loadingLines" class="larger-loader">
+      <div *ngIf="loadingLines && lineSelected == false" class="larger-loader">
         <i class="fas fa-spinner fa-spin"></i>
       </div>
-      <app-line-form *ngIf="!loadingLines"
+      <div  *ngIf="loadingLines == false && lineSelected == false">
+
+      </div>
+      <app-line-form *ngIf="!loadingLines && lineSelected == true"
         [currentLine]="selectedLine"
         [createMode]="createMode"
         [cities]="cities"
-        (submitLine)="submit()"></app-line-form>
+        (submitLine)="submit()"
+        (deleteLine)="delete()"></app-line-form>
     </div>
   </div>
 </div>
 
-<div *ngIf="message" class="alert"
-  [ngClass]="{'alert-danger': message?.type === 'ERROR',
-              'alert-success': message?.type === 'SUCCESS'}"
-  role="alert">
-  {{ message.msg }}
-</div>
+
