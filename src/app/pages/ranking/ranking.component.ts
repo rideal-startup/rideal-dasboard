@@ -33,7 +33,9 @@ export class RankingComponent implements OnInit {
 
   public filteredRanking = [];
 
-  constructor() { }
+  constructor() {
+    
+  }
 
   ngOnInit() {
     this.filteredRanking =
