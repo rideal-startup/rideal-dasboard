@@ -8,25 +8,8 @@ import { AuthenticationBasicService } from 'src/app/services/authentication-basi
 })
 export class UserComponent implements OnInit {
 
-  user: User; /* = {
-    id: "1",
-    username: "JuanCarlos",
-    name: "EureDog", // enterprice
-    city: {
-      id: "1",
-      name: "Lleida",
-      country: "Catalonia",
-      postalCode: "25670"
-    }
-    ,
-    adress: "Gardeny nº69",
-    email: "juan.carlos@euredog.org",
-    _links: null,
-    authorization: "string",
-    password: 'secret',
-
-  };
-*/
+  user: User;
+  
   constructor(private authenticationBasicService: AuthenticationBasicService) {
     this.user = authenticationBasicService.getCurrentUser();
   }

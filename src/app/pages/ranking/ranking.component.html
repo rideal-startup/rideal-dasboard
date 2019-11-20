@@ -34,7 +34,7 @@
           <tbody>
             <tr *ngFor="let u of filteredRanking">
               <td>{{ u.name }}</td>
-              <td>{{ u.city }}</td>
+              <td>{{ u.city.name }}</td>
               <td>{{ u.points }}</td>
             </tr>
           </tbody>
@@ -44,6 +44,6 @@
   </div>
 
   <div class="podium-wrapper">
-    <app-podium></app-podium>
+    <app-podium [winners]=winners></app-podium>
   </div>
 </div>

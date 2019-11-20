@@ -13,24 +13,24 @@ export const ROUTES: RouteInfo[] = [
     icon: 'tim-icons icon-chart-pie-36',
     class: ''
   },
-  {
+  /*{
     path: '/admin/maps',
     title: 'Maps',
     icon: 'tim-icons icon-pin',
     class: ''
-  },
+  },*/
   {
     path: '/admin/user',
-    title: 'User Profile',
+    title: 'Company Profile',
     icon: 'tim-icons icon-single-02',
     class: ''
   },
-  {
+  /*{
     path: '/admin/tables',
     title: 'Table List',
     icon: 'tim-icons icon-puzzle-10',
     class: ''
-  },
+  },*/
   {
     path: '/admin/challenges',
     title: 'Challenges',

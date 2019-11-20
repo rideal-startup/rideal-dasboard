@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { User } from 'src/app/domain/user';
 
 @Component({
   selector: 'app-podium',
@@ -13,23 +14,7 @@ export class PodiumComponent implements OnInit {
     '#cd7f32',
   ];
 
-  public winners = [
-    {
-      username: 'Sebé',
-      points: 1341,
-      prize: 'The prize name'
-    },
-    {
-      username: 'Jervas',
-      points: 25234,
-      prize: 'The prize name'
-    },
-    {
-      username: 'Guirado.ino',
-      points: 26565,
-      prize: 'The prize name'
-    }
-  ];
+  @Input() public winners: User;
 
   constructor() { }
 
