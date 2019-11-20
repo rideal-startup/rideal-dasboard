@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from 'src/app/domain/user';
+import { AuthenticationBasicService } from 'src/app/services/authentication-basic.service';
 
 @Component({
   selector: "app-user",
@@ -7,7 +8,7 @@ import { User } from 'src/app/domain/user';
 })
 export class UserComponent implements OnInit {
 
-  user: User = {
+  user: User; /* = {
     id: "1",
     username: "JuanCarlos",
     name: "EureDog", // enterprice
@@ -25,8 +26,10 @@ export class UserComponent implements OnInit {
     password: 'secret',
 
   };
-
-  constructor() {}
+*/
+  constructor(private authenticationBasicService: AuthenticationBasicService) {
+    this.user = authenticationBasicService.getCurrentUser();
+  }
 
   ngOnInit() {}
 }
