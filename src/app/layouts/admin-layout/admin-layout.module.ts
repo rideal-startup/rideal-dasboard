@@ -1,3 +1,4 @@
+import { FleetLocationComponent } from './../../pages/fleet-location/fleet-location.component';
 import { PodiumComponent } from './../../pages/ranking/podium/podium.component';
 import { RankingComponent } from './../../pages/ranking/ranking.component';
 import { CreateChallengeComponent } from './../../pages/challenges/create-challenge/create-challenge.component';
@@ -49,7 +50,8 @@ import { DurationPickerModule } from 'ngx-duration-picker';
     ListChallengesComponent,
     CreateChallengeComponent,
     RankingComponent,
-    PodiumComponent
+    PodiumComponent,
+    FleetLocationComponent,
   ],
   providers: [
     AuthenticationBasicService,

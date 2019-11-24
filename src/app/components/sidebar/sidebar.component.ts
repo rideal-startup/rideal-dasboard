@@ -44,6 +44,12 @@ export const ROUTES: RouteInfo[] = [
     class: ''
   },
   {
+    path: '/admin/fleet-location',
+    title: 'Fleet Geolocation',
+    icon: 'fas fa-location-arrow',
+    class: ''
+  },
+  {
     path: '/admin/ranking',
     title: 'Ranking',
     icon: 'fas fa-trophy',

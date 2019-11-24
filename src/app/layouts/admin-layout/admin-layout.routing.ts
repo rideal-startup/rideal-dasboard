@@ -1,3 +1,4 @@
+import { FleetLocationComponent } from './../../pages/fleet-location/fleet-location.component';
 import { RankingComponent } from './../../pages/ranking/ranking.component';
 import { ChallengesComponent } from './../../pages/challenges/challenges.component';
 import { Routes } from '@angular/router';
@@ -14,7 +15,8 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'user', component: UserComponent },
   { path: 'tables', component: TablesComponent },
   { path: 'fleetManagment', component: FleetManagmentComponent },
+  { path: 'fleet-location', component: FleetLocationComponent },
   { path: 'challenges', component: ChallengesComponent },
-  { path: 'ranking', component: RankingComponent   },
+  { path: 'ranking', component: RankingComponent },
 
 ];

@@ -19,6 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ChallengesComponent } from './pages/challenges/challenges.component';
 import { LineFormComponent } from './pages/fleet-managment/line-form/line-form.component';
 import { AuthenticationBasicService } from './services/authentication-basic.service';
+import { FleetLocationComponent } from './pages/fleet-location/fleet-location.component';
 
 
 @NgModule({
