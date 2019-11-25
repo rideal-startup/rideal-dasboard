@@ -105,7 +105,7 @@ export class FleetManagmentComponent implements OnInit {
     this.selectedLine.company = this.auth.getCurrentUser();
 
     const request$ =
-    this.lineService.delete(this.selectedLine.id);
+      this.lineService.delete(this.selectedLine.id);
     request$.subscribe(res => {
       this.lineSelected = false;
       this.lines.forEach((line, index) => {

@@ -5,78 +5,67 @@
         <div class=" card-body">
           <form>
             <div class="row">
-                <div class=" col-md-12">
-                    <div class=" card card-user">
-                      <div class=" card-body">
-                        <p class=" card-text"></p>
-                        <div class=" author">
-                          <div class=" block block-one"></div>
-                          <div class=" block block-two"></div>
-                          <div class=" block block-three"></div>
-                          <div class=" block block-four"></div>
-                          <a href="javascript:void(0)">
-                            <img alt="..." class=" avatar" src="assets/img/emilyz.jpg" />
-                            <h5 class=" title">{{user.name}}</h5>
-                          </a>
-                        </div>
-                      </div>
+              <div class=" col-md-12">
+                <div class=" card card-user">
+                  <div class=" card-body">
+                    <p class=" card-text"></p>
+                    <div class=" author">
+                      <div class=" block block-one"></div>
+                      <div class=" block block-two"></div>
+                      <div class=" block block-three"></div>
+                      <div class=" block block-four"></div>
+                      <a href="javascript:void(0)">
+                        <img alt="..." class=" avatar" src="assets/img/moventis.png" />
+                        <h5 class=" title">{{user.name}}</h5>
+                      </a>
                     </div>
                   </div>
+                </div>
+              </div>
             </div>
             <div class=" row">
               <div class=" col-md-5 pr-md-1">
                 <div class=" form-group">
                   <label> Company (disabled) </label>
-                  <input class=" form-control" placeholder="Company" type="text"
-                  [(ngModel)]="user.name" name="companyName" />
+                  <input class=" form-control" placeholder="Company" type="text" [(ngModel)]="user.name"
+                    name="companyName" />
                 </div>
               </div>
               <div class=" col-md-3 px-md-1">
                 <div class=" form-group">
                   <label> Username </label>
-                  <input class=" form-control" placeholder="Username" type="text" 
-                  [(ngModel)]="user.username" name="username" />
+                  <input class=" form-control" placeholder="Username" type="text" [(ngModel)]="user.username"
+                    name="username" />
                 </div>
               </div>
               <div class=" col-md-4 pl-md-1">
                 <div class=" form-group">
                   <label for="exampleInputEmail1"> Email address </label>
-                  <input class=" form-control" placeholder="mike@email.com" type="email" 
-                  [(ngModel)]="user.email" name="email"/>
+                  <input class=" form-control" placeholder="mike@email.com" type="email" [(ngModel)]="user.email"
+                    name="email" />
                 </div>
               </div>
             </div>
-            
-            <!--
-            <div class=" row">
-              <div class=" col-md-12">
-                <div class=" form-group">
-                  <label> Address </label>
-                  <input class=" form-control" placeholder="Home Address" type="text"
-                  [(ngModel)]="user.adress" name="address" />
-                </div>
-              </div>
-            </div>-->
             <div class=" row">
               <div class=" col-md-4 pr-md-1">
                 <div class=" form-group">
                   <label> City </label>
-                  <input class=" form-control" placeholder="City" type="text"
-                  [(ngModel)]="user.city.name" name="cityName" />
+                  <input class=" form-control" placeholder="City" type="text" [(ngModel)]="user.city.name"
+                    name="cityName" />
                 </div>
               </div>
               <div class=" col-md-4 px-md-1">
                 <div class=" form-group">
                   <label> Country </label>
-                  <input class=" form-control" placeholder="Country" type="text"
-                  [(ngModel)]="user.city.country" name="country"/>
+                  <input class=" form-control" placeholder="Country" type="text" [(ngModel)]="user.city.country"
+                    name="country" />
                 </div>
               </div>
               <div class=" col-md-4 pl-md-1">
                 <div class=" form-group">
                   <label> Postal Code </label>
-                  <input class=" form-control" placeholder="ZIP Code" type="number"
-                  [(ngModel)]="user.city.postalCode" name="postalCode" />
+                  <input class=" form-control" placeholder="ZIP Code" type="number" [(ngModel)]="user.city.postalCode"
+                    name="postalCode" />
                 </div>
               </div>
             </div>
@@ -98,6 +87,6 @@ Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
         </div>
       </div>
     </div>
-    
+
   </div>
 </div>

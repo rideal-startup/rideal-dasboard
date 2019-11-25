@@ -1,3 +1,4 @@
+import { Coordinates } from './../../domain/coordinates';
 import { GeolocationService } from './../../services/geolocation.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,18 +18,34 @@ interface Marker {
 })
 export class FleetLocationComponent implements OnInit {
   private map;
+  private markers = new Map<string, Coordinates>();
+  private previousMarkers: any[] = [];
 
   constructor(private geoLocation: GeolocationService) { }
 
   private updateMarkers() {
+    this.previousMarkers.forEach(m => m.setMap(null));
 
+    this.markers.forEach((value: Coordinates, key: string) => {
+      const marker = new google.maps.Marker({
+        position: new google.maps.LatLng(value.lat, value.lng),
+        title: key
+      });
+      this.previousMarkers.push(marker);
+      marker.setMap(this.map);
+    });
   }
+
   ngOnInit() {
     this.geoLocation.initializeWebSocketConnection().subscribe(
-
+      (m: any) => {
+        console.log(m);
+        this.markers.set(m.lineId, new Coordinates(m.lat, m.lng));
+        this.updateMarkers();
+      }
     );
 
-    const myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+    const myLatlng = new google.maps.LatLng(41.6075581, 0.6230375);
     const mapOptions = {
       zoom: 13,
       center: myLatlng,
@@ -222,6 +239,7 @@ export class FleetLocationComponent implements OnInit {
       ]
     };
 
-    this.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    this.map = new google.maps.Map(
+      document.getElementById('map'), mapOptions);
   }
 }
